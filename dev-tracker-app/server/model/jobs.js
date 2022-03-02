@@ -14,7 +14,7 @@ const JobSchema = new Mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["interested", "ghosted", "declined", "accepted"],
+      enum: ["interested", "ghosted", "interview", "declined", "accepted"],
       default: "interested",
     },
   },
@@ -24,18 +24,23 @@ const JobSchema = new Mongoose.Schema(
 // create job model
 const Job = Mongoose.model("Job", JobSchema);
 
-// get Jobs
+// get
 export async function getAllJobs() {
   return Job.find();
 }
 
-// post job
+// post
 export async function postJob(company, position, status) {
   return new Job({
     company,
     position,
     status,
   }).save();
+}
+
+// delete
+export async function deleteJob(id) {
+  return Job.findByIdAndDelete(id);
 }
 
 // convert virtual id to readable id

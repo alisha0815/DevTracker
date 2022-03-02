@@ -1,12 +1,12 @@
-import { getAllJobs, postJob } from "../model/jobs.js";
+import { deleteJob, getAllJobs, postJob } from "../model/jobs.js";
 
-//get jobs
+//get
 export async function retrieveJobs(req, res) {
   const jobs = await getAllJobs();
   res.status(200).json(jobs);
 }
 
-// post job
+// post
 export async function createJob(req, res) {
   try {
     const { company, position, status } = req.body;
@@ -17,4 +17,11 @@ export async function createJob(req, res) {
       res.status(404).send({ message: "input field is missing" });
     }
   }
+}
+
+// delete
+export async function removeJob(req, res) {
+  const id = req.params.id;
+  await deleteJob(id);
+  res.sendStatus(204);
 }
