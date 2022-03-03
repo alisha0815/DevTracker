@@ -25,3 +25,14 @@ export async function removeJob(req, res) {
   await jobRepository.deleteJob(id);
   res.sendStatus(204);
 }
+
+//update
+export async function updateJop(req, res) {
+  const id = req.params.id;
+  const company = req.body.company;
+  const position = req.body.position;
+  const status = req.body.status;
+  const job = await jobRepository.getById(id);
+  const updated = await jobRepository.update(id, company, position, status);
+  res.status(200).json(updated);
+}

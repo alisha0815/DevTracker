@@ -13,6 +13,6 @@ jobsRouter.post("/add", jobsController.createJob);
 jobsRouter.delete("/list/:id", jobsController.removeJob);
 
 // PUT
-// jobsRouter.post("/list/edit/:id", updateJob);
+jobsRouter.put("/edit/:id", jobsController.updateJop);
 
 export default jobsRouter;

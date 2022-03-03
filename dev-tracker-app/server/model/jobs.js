@@ -24,6 +24,11 @@ const JobSchema = new Mongoose.Schema(
 // create job model
 const Job = Mongoose.model("Job", JobSchema);
 
+// get by Id
+export async function getById(id) {
+  return Job.findById(id);
+}
+
 // get
 export async function getAllJobs() {
   return Job.find();
@@ -41,6 +46,11 @@ export async function postJob(company, position, status) {
 // delete
 export async function deleteJob(id) {
   return Job.findByIdAndDelete(id);
+}
+
+// update
+export async function update(id, company, position, status) {
+  return Job.findByIdAndUpdate(id, { company, position, status });
 }
 
 useVirtualId(JobSchema);
