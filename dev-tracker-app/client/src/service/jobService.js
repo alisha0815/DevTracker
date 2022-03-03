@@ -28,4 +28,11 @@ export const jobService = {
     }
     return data;
   },
+
+  async updateJob(id, company, position, status) {
+    return await fetch(`${baseURL}/edit/${id}`, {
+      method: "PUT",
+      body: JSON.stringify({ company, position, status }),
+    });
+  },
 };

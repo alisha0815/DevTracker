@@ -8,3 +8,9 @@ export const addNewJob = (company, position, status) => {
     status,
   };
 };
+
+export const listJobs = () => {
+  return {
+    type: "LIST",
+  };
+};

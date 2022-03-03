@@ -1,13 +1,12 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addNewJob } from "../../redux/actions/jobsActions";
+// import { useDispatch, useSelector } from "react-redux";
+// import { addNewJob } from "../../redux/actions/jobsActions";
 import { jobService } from "../../service/jobService";
-import JobList from "./JobList";
+// import List from "../List/List";
 
-const Add = ({ job, setJob, setJobs, jobs }) => {
-  const jobItems = useSelector((state) => state);
-  console.log(jobItems);
-  const dispatch = useDispatch();
+const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
+  //   const jobItems = useSelector((state) => state.jobs);
+  //   const dispatch = useDispatch();
 
   const inputHandler = (e) => {
     e.preventDefault();
@@ -21,13 +20,16 @@ const Add = ({ job, setJob, setJobs, jobs }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     const { company, position, status } = e.target;
+
+    // if(isEditing)
     const newJob = await jobService.createJob(
       company.value,
       position.value,
       status.value
     );
     setJobs([newJob, ...jobs]);
-    dispatch(addNewJob(company.value, position.value, status.value));
+    // dispatch(addNewJob(company.value, position.value, status.value));
+    await jobService.createJob(company.value, position.value, status.value);
     setJob({ company: "", position: "", status: "" });
   };
   return (
@@ -61,7 +63,6 @@ const Add = ({ job, setJob, setJobs, jobs }) => {
           <button>CREATE</button>
         </div>
       </form>
-      <JobList jobsItems={jobItems} />
     </div>
   );
 };
