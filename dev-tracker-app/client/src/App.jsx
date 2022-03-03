@@ -14,6 +14,7 @@ const App = () => {
     status: "",
   });
   const [jobs, setJobs] = useState([]);
+
   useEffect(() => {
     jobService
       .getAllJobs()
@@ -30,7 +31,13 @@ const App = () => {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/list" element={<List jobs={jobs} />} />
-            <Route exact path="/add" element={<Add job={job} />} />
+            <Route
+              exact
+              path="/add"
+              element={
+                <Add job={job} setJob={setJob} setJobs={setJobs} jobs={jobs} />
+              }
+            />
           </Routes>
         </Router>
       </>

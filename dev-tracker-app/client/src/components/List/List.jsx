@@ -5,8 +5,9 @@ const List = ({ jobs }) => {
     <div>
       <h1>Job List</h1>
       <ul>
+        <h1>Company</h1>
         {jobs.map((job) => (
-          <li key={job.id}>{job.company}</li>
+          <li key={job.id}>{job.status}</li>
         ))}
       </ul>
     </div>
