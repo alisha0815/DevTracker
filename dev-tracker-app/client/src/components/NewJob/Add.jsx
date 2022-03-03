@@ -2,9 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewJob } from "../../redux/actions/jobsActions";
 import { jobService } from "../../service/jobService";
+import JobList from "./JobList";
 
 const Add = ({ job, setJob, setJobs, jobs }) => {
-  const jobItem = useSelector((state) => state.jobsReducer);
+  const jobItems = useSelector((state) => state);
+  console.log(jobItems);
   const dispatch = useDispatch();
 
   const inputHandler = (e) => {
@@ -25,8 +27,8 @@ const Add = ({ job, setJob, setJobs, jobs }) => {
       status.value
     );
     setJobs([newJob, ...jobs]);
-    setJob({ company: "", position: "", status: "" });
     dispatch(addNewJob(company.value, position.value, status.value));
+    setJob({ company: "", position: "", status: "" });
   };
   return (
     <div>
@@ -59,6 +61,7 @@ const Add = ({ job, setJob, setJobs, jobs }) => {
           <button>CREATE</button>
         </div>
       </form>
+      <JobList jobsItems={jobItems} />
     </div>
   );
 };

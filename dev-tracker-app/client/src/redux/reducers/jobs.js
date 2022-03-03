@@ -1,10 +1,10 @@
 export const ADD = "ADD";
 
-export const jobsReducer = (jobs = [], action) => {
+export const jobsReducer = (state = [], action) => {
   switch (action.type) {
     case ADD:
       return [
-        ...jobs,
+        ...state,
         {
           company: action.company,
           postion: action.position,
@@ -12,6 +12,6 @@ export const jobsReducer = (jobs = [], action) => {
         },
       ];
     default:
-      return jobs;
+      return state;
   }
 };
