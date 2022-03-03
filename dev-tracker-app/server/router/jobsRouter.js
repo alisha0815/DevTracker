@@ -1,11 +1,18 @@
 import express from "express";
-import { createJob, retrieveJobs } from "../controllers/job.js";
-import { deleteJob } from "../model/jobs.js";
+import * as jobsController from "../controllers/job.js";
 
 const jobsRouter = express.Router();
 
-jobsRouter.get("/", retrieveJobs);
-jobsRouter.post("/", createJob);
-jobsRouter.delete("/:id", deleteJob);
+// GET
+jobsRouter.get("/list", jobsController.retrieveJobs);
+
+// POST
+jobsRouter.post("/add", jobsController.createJob);
+
+// DELETE
+jobsRouter.delete("/list/:id", jobsController.removeJob);
+
+// PUT
+// jobsRouter.post("/list/edit/:id", updateJob);
 
 export default jobsRouter;

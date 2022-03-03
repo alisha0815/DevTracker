@@ -1,8 +1,8 @@
-import { deleteJob, getAllJobs, postJob } from "../model/jobs.js";
+import * as jobRepository from "../model/jobs.js";
 
 //get
 export async function retrieveJobs(req, res) {
-  const jobs = await getAllJobs();
+  const jobs = await jobRepository.getAllJobs();
   res.status(200).json(jobs);
 }
 
@@ -10,7 +10,7 @@ export async function retrieveJobs(req, res) {
 export async function createJob(req, res) {
   try {
     const { company, position, status } = req.body;
-    const newJob = await postJob(company, position, status);
+    const newJob = await jobRepository.postJob(company, position, status);
     res.status(201).json(newJob);
   } catch (error) {
     if (!req.body.company || !req.body.position || !req.body.status) {
@@ -22,6 +22,6 @@ export async function createJob(req, res) {
 // delete
 export async function removeJob(req, res) {
   const id = req.params.id;
-  await deleteJob(id);
+  await jobRepository.deleteJob(id);
   res.sendStatus(204);
 }

@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.send("hei testing");
 });
 
-app.use("/jobs", jobsRouter);
+app.use("/", jobsRouter);
 
 app.use((req, res) => {
   res.sendStatus(404);

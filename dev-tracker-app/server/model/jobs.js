@@ -43,7 +43,9 @@ export async function deleteJob(id) {
   return Job.findByIdAndDelete(id);
 }
 
-// convert virtual id to readable id
 useVirtualId(JobSchema);
+// update
+// export async function updateJob(id)
+// convert virtual id to readable id
 
 export default Job;
