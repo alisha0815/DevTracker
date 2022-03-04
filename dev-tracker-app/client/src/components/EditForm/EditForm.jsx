@@ -26,14 +26,14 @@ const EditForm = ({ job, jobs, setJob, setJobs }) => {
       .catch(console.error);
   };
 
-  const inputHandler = (e) => {
-    e.preventDefault();
-    const value = e.target.value;
-    setJob({
-      ...updatedJob,
-      [e.target.name]: value,
-    });
-  };
+  //   const inputHandler = (e) => {
+  //     e.preventDefault();
+  // const value = e.target.value;
+  // setJob({
+  //   ...updatedJob,
+  //   [e.target.name]: value,
+  // });
+  //   };
 
   return (
     <div>
@@ -46,7 +46,7 @@ const EditForm = ({ job, jobs, setJob, setJobs }) => {
             name="company"
             defaultValue={updatedJob.company}
             // value={job.company}
-            onChange={inputHandler}
+            // onChange={inputHandler}
           />
           <label htmlFor="position">Position</label>
           <input
@@ -54,14 +54,14 @@ const EditForm = ({ job, jobs, setJob, setJobs }) => {
             name="position"
             defaultValue={updatedJob.position}
             // value={job.position}
-            onChange={inputHandler}
+            // onChange={inputHandler}
           />
           <label htmlFor="status">Status</label>
           <select
             name="status"
             defaultValue={updatedJob.status}
             // value={job.status}
-            onChange={inputHandler}
+            // onChange={inputHandler}
           >
             <option value="interested">interested</option>
             <option value="pending">pending</option>

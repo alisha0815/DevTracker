@@ -30,13 +30,19 @@ export const jobService = {
   },
 
   async updateJob(id, company, position, status) {
-    console.log(company, position, status);
+    // console.log(company, position, status);
     return await fetch(`${baseURL}/edit/${id}`, {
       method: "PUT",
       body: JSON.stringify({ company, position, status }),
       headers: {
         "Content-Type": "application/json",
       },
+    });
+  },
+
+  async deleteJob(id) {
+    return await fetch(`${baseURL}/list/${id}`, {
+      method: "DELETE",
     });
   },
 };
