@@ -20,11 +20,12 @@ const App = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
+    console.log("useEffectAPP");
     jobService
       .getAllJobs()
       .then((jobs) => setJobs(jobs))
       .catch((err) => console.error(err));
-  }, [jobs]);
+  }, []);
 
   return (
     <>
