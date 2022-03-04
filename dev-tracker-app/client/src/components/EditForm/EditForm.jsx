@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { jobService } from "../../service/jobService";
 
-const EditForm = ({ jobs }) => {
+const EditForm = ({ jobs, triggerUpdate }) => {
   const { id } = useParams();
   const [updatedJob, setUpdatedJob] = useState(
     jobs.find((job) => job.id === id)
@@ -22,7 +22,11 @@ const EditForm = ({ jobs }) => {
     jobService
       .updateJob(id, company.value, position.value, status.value)
       .then((res) => res.json())
-      .then(console.log)
+      .then((data) => {
+        // KOSTAS: we update the `update` state of App via the `triggerUpdate` with a new random value, in order to trigger the useEffect of App
+        triggerUpdate(Math.random());
+        console.log(data);
+      })
       .catch(console.error);
   };
 

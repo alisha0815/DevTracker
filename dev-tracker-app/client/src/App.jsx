@@ -18,6 +18,8 @@ const App = () => {
   });
   const [jobs, setJobs] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
+  const [update, triggerUpdate] = useState();
+  // KOSTAS: This state will be used as a mechanism to trigger the useEffect via the dependency `update` that we pass to it.
 
   useEffect(() => {
     console.log("useEffectAPP");
@@ -25,7 +27,8 @@ const App = () => {
       .getAllJobs()
       .then((jobs) => setJobs(jobs))
       .catch((err) => console.error(err));
-  }, []);
+  }, [update]);
+  // KOSTAS Every time the `update` gets updated with a new value, the useEffect will be called which means we'll get a new fetch and the `jobs` state will be updated.
 
   return (
     <>
@@ -59,6 +62,8 @@ const App = () => {
               path="/edit/:id"
               element={
                 <EditForm
+                  // KOSTAS: We pass the triggerUpdate function as a prop, so that the EditForm Component can call the function and update the `update` state in this Component which will subsequently trigger the useEffect
+                  triggerUpdate={triggerUpdate}
                   job={job}
                   jobs={jobs}
                   setJob={setJob}
