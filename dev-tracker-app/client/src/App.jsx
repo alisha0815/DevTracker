@@ -56,7 +56,14 @@ const App = () => {
             <Route
               exact
               path="/edit/:id"
-              element={<EditForm job={job} jobs={jobs} setJob={setJob} />}
+              element={
+                <EditForm
+                  job={job}
+                  jobs={jobs}
+                  setJob={setJob}
+                  setJobs={setJobs}
+                />
+              }
             />
           </Routes>
         </Router>

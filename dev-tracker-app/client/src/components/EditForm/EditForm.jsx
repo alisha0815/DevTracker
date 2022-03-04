@@ -2,13 +2,29 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { jobService } from "../../service/jobService";
 
-const EditForm = ({ job, jobs, setJob }) => {
+const EditForm = ({ job, jobs, setJob, setJobs }) => {
   const { id } = useParams();
   const [updatedJob, setUpdatedJob] = useState(
     jobs.find((job) => job.id === id)
   );
 
-  console.log(updatedJob);
+  const editHandler = async (e) => {
+    e.preventDefault();
+    const { company, position, status } = e.target;
+    console.log(company.value, position.value, status.value);
+    setUpdatedJob({
+      id: id,
+      company: company.value,
+      position: position.value,
+      status: status.value,
+    });
+
+    jobService
+      .updateJob(id, company.value, position.value, status.value)
+      .then((res) => res.json())
+      .then(console.log)
+      .catch(console.error);
+  };
 
   const inputHandler = (e) => {
     e.preventDefault();
@@ -19,23 +35,17 @@ const EditForm = ({ job, jobs, setJob }) => {
     });
   };
 
-  // const editHandler = (e, id) => {
-  //     const { company, position, status } = e.target;
-  //     setUpdatedJob({ id, company, position, status })//set state asyncrronous
-  //     jobService.updateJob(id, company, position, status)
-  // .then(() => setJob(updatedJob));//catch
-  // };
-
   return (
     <div>
-      <h1>Edit your job</h1>
-      <form>
+      <h4>Edit your job</h4>
+      <form onSubmit={editHandler}>
         <div>
           <label htmlFor="company">Company</label>
           <input
             type="text"
             name="company"
             defaultValue={updatedJob.company}
+            // value={job.company}
             onChange={inputHandler}
           />
           <label htmlFor="position">Position</label>
@@ -43,13 +53,14 @@ const EditForm = ({ job, jobs, setJob }) => {
             type="text"
             name="position"
             defaultValue={updatedJob.position}
-            // value={position}
+            // value={job.position}
             onChange={inputHandler}
           />
           <label htmlFor="status">Status</label>
           <select
             name="status"
             defaultValue={updatedJob.status}
+            // value={job.status}
             onChange={inputHandler}
           >
             <option value="interested">interested</option>
