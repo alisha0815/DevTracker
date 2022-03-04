@@ -14,7 +14,14 @@ const JobSchema = new Mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["interested", "ghosted", "interview", "declined", "accepted"],
+      enum: [
+        "interested",
+        "applied",
+        "phone-interview",
+        "technical interview",
+        "declined",
+        "accepted",
+      ],
       default: "interested",
     },
   },
