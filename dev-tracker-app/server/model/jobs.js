@@ -10,7 +10,7 @@ const JobSchema = new Mongoose.Schema(
     },
     position: {
       type: String,
-      required: true,
+      enum: ["frontend", "backend", "fullstack"],
     },
     status: {
       type: String,
