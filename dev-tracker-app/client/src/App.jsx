@@ -24,7 +24,7 @@ const App = () => {
       .getAllJobs()
       .then((jobs) => setJobs(jobs))
       .catch((err) => console.error(err));
-  }, []);
+  }, [jobs]);
 
   return (
     <>

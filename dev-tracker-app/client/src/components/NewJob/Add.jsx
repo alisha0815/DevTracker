@@ -45,12 +45,11 @@ const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
             onChange={inputHandler}
           />
           <label htmlFor="position">Position</label>
-          <input
-            type="text"
-            name="position"
-            value={job.position}
-            onChange={inputHandler}
-          />
+          <select name="position" value={job.position} onChange={inputHandler}>
+            <option value="frontend">frontend</option>
+            <option value="backend">backend</option>
+            <option value="fullstack">fullstack</option>
+          </select>
           <label htmlFor="status">Status</label>
           <select name="status">
             <option value="interested">interested</option>

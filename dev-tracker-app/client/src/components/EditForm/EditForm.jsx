@@ -41,32 +41,19 @@ const EditForm = ({ jobs }) => {
       <form onSubmit={editHandler}>
         <div>
           <label htmlFor="company">Company</label>
-          <input
-            type="text"
-            name="company"
-            defaultValue={updatedJob.company}
-            // value={job.company}
-            // onChange={inputHandler}
-          />
+          <input type="text" name="company" defaultValue={updatedJob.company} />
           <label htmlFor="position">Position</label>
-          <input
-            type="text"
-            name="position"
-            defaultValue={updatedJob.position}
-            // value={job.position}
-            // onChange={inputHandler}
-          />
+          <select name="position" defaultValue={updatedJob.position}>
+            <option value="frontend">frontend</option>
+            <option value="backend">backend</option>
+            <option value="fullstack">fullstack</option>
+          </select>
           <label htmlFor="status">Status</label>
-          <select
-            name="status"
-            defaultValue={updatedJob.status}
-            // value={job.status}
-            // onChange={inputHandler}
-          >
+          <select name="status" defaultValue={updatedJob.status}>
             <option value="interested">interested</option>
-            <option value="pending">pending</option>
-            <option value="ghosted">ghosted</option>
-            <option value="interview">interview</option>
+            <option value="applied">applied</option>
+            <option value="phone-interview">phone-interview</option>
+            <option value="technical interview">technical interview</option>
             <option value="declined">declined</option>
             <option value="accepted">accepted</option>
           </select>
