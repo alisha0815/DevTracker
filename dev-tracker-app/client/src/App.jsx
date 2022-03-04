@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Dashboard from "./components/Dashboard/dashboard";
+import EditForm from "./components/EditForm/EditForm";
 import Home from "./components/Home/Home";
 import List from "./components/List/List";
 import Navbar from "./components/Navbar/Navbar";
@@ -36,7 +37,7 @@ const App = () => {
             <Route
               exact
               path="/list"
-              element={<List jobs={jobs} setJobs={setJobs} />}
+              element={<List jobs={jobs} setJobs={setJobs} setJob={setJob} />}
             />
             <Route
               exact
@@ -51,6 +52,11 @@ const App = () => {
                   setIsEditing={setIsEditing}
                 />
               }
+            />
+            <Route
+              exact
+              path="/edit/:id"
+              element={<EditForm job={job} jobs={jobs} setJob={setJob} />}
             />
           </Routes>
         </Router>

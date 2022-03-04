@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import EditForm from "../EditForm/EditForm";
 
-const List = ({ jobs, setJobs, setIsEditing }) => {
+const List = ({ jobs, setJob, setJobs, setIsEditing }) => {
   let navigate = useNavigate();
 
   const editHandler = (id) => {
-    navigate("/add");
+    navigate(`/edit/${id}`);
   };
 
   return (
@@ -21,6 +22,7 @@ const List = ({ jobs, setJobs, setIsEditing }) => {
               <li>{job.position}</li>
               <li>{job.status}</li>
               <button onClick={() => editHandler(job.id)}>EDIT</button>
+              {/* <EditForm id={job.id} job={job} setJob={setJob} /> */}
             </div>
           </ul>
         ))}
