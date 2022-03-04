@@ -54,9 +54,9 @@ const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
           <label htmlFor="status">Status</label>
           <select name="status">
             <option value="interested">interested</option>
-            <option value="pending">pending</option>
-            <option value="ghosted">ghosted</option>
-            <option value="interview">interview</option>
+            <option value="applied">applied</option>
+            <option value="phone-interview">phone-interview</option>
+            <option value="technical interview">technical interview</option>
             <option value="declined">declined</option>
             <option value="accepted">accepted</option>
           </select>
