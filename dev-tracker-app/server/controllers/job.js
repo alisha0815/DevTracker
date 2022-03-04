@@ -32,7 +32,8 @@ export async function updateJop(req, res) {
   const company = req.body.company;
   const position = req.body.position;
   const status = req.body.status;
-  const job = await jobRepository.getById(id);
+  await jobRepository.getById(id);
   const updated = await jobRepository.update(id, company, position, status);
-  res.status(200).json(updated);
+  console.log("updated", updated);
+  res.status(200).send(updated);
 }

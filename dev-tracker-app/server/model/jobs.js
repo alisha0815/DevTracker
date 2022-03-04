@@ -50,12 +50,13 @@ export async function deleteJob(id) {
 
 // update
 export async function update(id, company, position, status) {
-  return Job.findByIdAndUpdate(id, { company, position, status });
+  return await Job.findByIdAndUpdate(
+    id,
+    { company, position, status },
+    { new: true }
+  );
 }
 
 useVirtualId(JobSchema);
-// update
-// export async function updateJob(id)
-// convert virtual id to readable id
 
 export default Job;
