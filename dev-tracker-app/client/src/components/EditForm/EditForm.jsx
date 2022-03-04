@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { jobService } from "../../service/jobService";
 
-const EditForm = ({ job, jobs, setJob, setJobs }) => {
+const EditForm = ({ jobs }) => {
   const { id } = useParams();
   const [updatedJob, setUpdatedJob] = useState(
     jobs.find((job) => job.id === id)
