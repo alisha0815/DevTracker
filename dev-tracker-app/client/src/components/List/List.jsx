@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { jobService } from "../../service/jobService";
 import EditForm from "../EditForm/EditForm";
+import Categories from "./Categores";
+import Category from "./Categores";
 
 const List = ({ jobs, setJob, setJobs, setIsEditing }) => {
   let navigate = useNavigate();
@@ -18,6 +20,7 @@ const List = ({ jobs, setJob, setJobs, setIsEditing }) => {
   return (
     <div>
       <h1>Job List</h1>
+      <Categories jobs={jobs} setJobs={setJobs} />
       <ul>
         <h1>Company</h1>
         {jobs.map((job) => (
