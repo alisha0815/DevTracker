@@ -1,4 +1,5 @@
 import React from "react";
+import ApplicationChart from "./ApplicationChart";
 
 const Dashboard = ({ jobs }) => {
   console.log(jobs);
@@ -13,7 +14,7 @@ const Dashboard = ({ jobs }) => {
           <h3>Applied Jobs: {jobs.length}</h3>
         </li>
         <li>
-          <h3>Phone-interview: {filteredStatus("phone interview")}</h3>
+          <h3>Phone-interview: {filteredStatus("phone-interview")}</h3>
         </li>
         <li>
           <h3>Technical interview: {filteredStatus("technical interview")}</h3>
@@ -24,6 +25,9 @@ const Dashboard = ({ jobs }) => {
           <h4>Accepted: {filteredStatus("accepted")}</h4>
         </li>
       </ul>
+      <div>
+        <ApplicationChart jobs={jobs} />
+      </div>
     </>
   );
 };
