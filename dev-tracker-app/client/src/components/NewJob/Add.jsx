@@ -29,7 +29,7 @@ const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
     );
     setJobs([newJob, ...jobs]);
     // dispatch(addNewJob(company.value, position.value, status.value));
-    await jobService.createJob(company.value, position.value, status.value);
+    // await jobService.createJob(company.value, position.value, status.value);
     setJob({ company: "", position: "", status: "" });
   };
   return (
