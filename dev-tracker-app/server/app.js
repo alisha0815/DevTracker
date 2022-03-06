@@ -4,6 +4,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import jobsRouter from "./router/jobsRouter.js";
 import { connectDB } from "./db/jobs.js";
+import authRouter from "./router/authRouter.js";
 dotenv.config();
 
 const app = express();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/", jobsRouter);
+app.use("/auth", authRouter);
 
 app.use((req, res) => {
   res.sendStatus(404);
