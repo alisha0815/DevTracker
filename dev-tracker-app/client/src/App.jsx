@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
-import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  BrowserRouter as Router,
+  useLocation,
+} from "react-router-dom";
 import Dashboard from "./components/Dashboard/dashboard";
 import EditForm from "./components/EditForm/EditForm";
 import Home from "./components/Home/Home";
@@ -8,6 +13,7 @@ import List from "./components/List/List";
 import Navbar from "./components/Navbar/Navbar";
 import Add from "./components/NewJob/Add";
 import { jobService } from "./service/jobService";
+import GlobalStyle from "./styles/styled.global";
 
 const App = () => {
   // const { jobItems } = useSelector((state) => state.jobItems);
@@ -34,52 +40,54 @@ const App = () => {
 
   return (
     <>
-      <>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route
-              exact
-              path="/dashboard"
-              element={<Dashboard jobs={jobs} />}
-            />
-            <Route
-              exact
-              path="/list"
-              element={<List jobs={jobs} setJobs={setJobs} setJob={setJob} />}
-            />
-            <Route
-              exact
-              path="/add"
-              element={
-                <Add
-                  job={job}
-                  setJob={setJob}
-                  setJobs={setJobs}
-                  jobs={jobs}
-                  isEditing={isEditing}
-                  setIsEditing={setIsEditing}
-                />
-              }
-            />
-            <Route
-              exact
-              path="/edit/:id"
-              element={
-                <EditForm
-                  // KOSTAS: We pass the triggerUpdate function as a prop, so that the EditForm Component can call the function and update the `update` state in this Component which will subsequently trigger the useEffect
-                  triggerUpdate={triggerUpdate}
-                  job={job}
-                  jobs={jobs}
-                  setJob={setJob}
-                  setJobs={setJobs}
-                />
-              }
-            />
-          </Routes>
-        </Router>
-      </>
+      <div>
+        <GlobalStyle />
+        <>
+          <Router>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route
+                exact
+                path="/dashboard"
+                element={<Dashboard jobs={jobs} />}
+              />
+              <Route
+                exact
+                path="/list"
+                element={<List jobs={jobs} setJobs={setJobs} setJob={setJob} />}
+              />
+              <Route
+                exact
+                path="/add"
+                element={
+                  <Add
+                    job={job}
+                    setJob={setJob}
+                    setJobs={setJobs}
+                    jobs={jobs}
+                    isEditing={isEditing}
+                    setIsEditing={setIsEditing}
+                  />
+                }
+              />
+              <Route
+                exact
+                path="/edit/:id"
+                element={
+                  <EditForm
+                    // KOSTAS: We pass the triggerUpdate function as a prop, so that the EditForm Component can call the function and update the `update` state in this Component which will subsequently trigger the useEffect
+                    triggerUpdate={triggerUpdate}
+                    job={job}
+                    jobs={jobs}
+                    setJob={setJob}
+                    setJobs={setJobs}
+                  />
+                }
+              />
+            </Routes>
+          </Router>
+        </>
+      </div>
     </>
   );
 };
