@@ -15,6 +15,8 @@ const App = () => {
     company: "",
     position: "",
     status: "",
+    date_applied: Date.now(),
+    date_interview: Date.now(),
   });
   const [jobs, setJobs] = useState([]);
   const [isEditing, setIsEditing] = useState(false);

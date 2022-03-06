@@ -12,14 +12,7 @@ export const jobService = {
     return response.json();
   },
 
-  async filterJobs(position) {
-    let filteredJobs = await this.getAllJobs.filter(
-      (job) => (job.position = position)
-    );
-    return filteredJobs;
-  },
-
-  async createJob(company, position, status) {
+  async createJob(company, position, status, date_applied, date_interview) {
     const response = await fetch(`${baseURL}/add`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
@@ -27,6 +20,8 @@ export const jobService = {
         company: company,
         position: position,
         status: status,
+        date_applied: date_applied,
+        date_interview: date_interview,
       }),
     });
     const data = await response.json();
@@ -36,11 +31,17 @@ export const jobService = {
     return data;
   },
 
-  async updateJob(id, company, position, status) {
+  async updateJob(id, company, position, status, date_applied, date_interview) {
     // console.log(company, position, status);
     return await fetch(`${baseURL}/edit/${id}`, {
       method: "PUT",
-      body: JSON.stringify({ company, position, status }),
+      body: JSON.stringify({
+        company,
+        position,
+        status,
+        date_applied,
+        date_interview,
+      }),
       headers: {
         "Content-Type": "application/json",
       },

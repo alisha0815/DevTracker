@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { addNewJob } from "../../redux/actions/jobsActions";
 import { jobService } from "../../service/jobService";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 // import List from "../List/List";
 
 const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
@@ -19,18 +22,27 @@ const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const { company, position, status } = e.target;
+    const { company, position, status, date_applied, date_interview } =
+      e.target;
 
     // if(isEditing)
     const newJob = await jobService.createJob(
       company.value,
       position.value,
-      status.value
+      status.value,
+      date_applied.value,
+      date_interview.value
     );
     setJobs([newJob, ...jobs]);
     // dispatch(addNewJob(company.value, position.value, status.value));
     // await jobService.createJob(company.value, position.value, status.value);
-    setJob({ company: "", position: "", status: "" });
+    setJob({
+      company: "",
+      position: "",
+      status: "",
+      date_applied: "",
+      date_interview: "",
+    });
   };
   return (
     <div>
@@ -59,6 +71,20 @@ const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
             <option value="declined">declined</option>
             <option value="accepted">accepted</option>
           </select>
+          <label htmlFor="date_applied">Date Applied</label>
+          <input
+            name="date_applied"
+            type="datetime-local"
+            value={job.date_applied}
+            onChange={inputHandler}
+          />
+          <label htmlFor="date_interview">Date Interview</label>
+          <input
+            name="date_interview"
+            type="datetime-local"
+            value={job.date_interview}
+            onChange={inputHandler}
+          />
           <button>CREATE</button>
         </div>
       </form>

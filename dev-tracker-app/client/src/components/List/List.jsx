@@ -67,7 +67,7 @@ const List = ({ jobs, setJob, setJobs, setIsEditing }) => {
       </div>
 
       <ul>
-        <h1>Company</h1>
+        <h1>Company ({filteredJobs.length})</h1>
         {filteredJobs.map((job) => (
           <ul key={job.id}>
             <div>
@@ -76,6 +76,9 @@ const List = ({ jobs, setJob, setJobs, setIsEditing }) => {
               </li>
               <li>{job.position}</li>
               <li>{job.status}</li>
+              {job.date_applied && <li>{job.date_applied}</li>}
+              {job.date_interview && <li>{job.date_interview}</li>}
+
               <button onClick={() => editHandler(job.id)}>EDIT</button>
               <button onClick={() => deleteHandler(job.id)}>DELET</button>
               {/* <EditForm id={job.id} job={job} setJob={setJob} /> */}
