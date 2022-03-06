@@ -11,6 +11,7 @@ export async function createJob(req, res) {
   try {
     const { company, position, status } = req.body;
     const newJob = await jobRepository.postJob(company, position, status);
+    console.log("created", company);
     res.status(201).json(newJob);
   } catch (error) {
     if (!req.body.company || !req.body.position || !req.body.status) {
