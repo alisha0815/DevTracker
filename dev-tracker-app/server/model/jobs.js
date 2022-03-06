@@ -24,6 +24,12 @@ const JobSchema = new Mongoose.Schema(
       ],
       default: "interested",
     },
+    date_applied: {
+      type: Date,
+    },
+    date_interview: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
@@ -42,11 +48,19 @@ export async function getAllJobs() {
 }
 
 // post
-export async function postJob(company, position, status) {
+export async function postJob(
+  company,
+  position,
+  status,
+  date_applied,
+  date_interview
+) {
   return new Job({
     company,
     position,
     status,
+    date_applied,
+    date_interview,
   }).save();
 }
 
@@ -56,10 +70,17 @@ export async function deleteJob(id) {
 }
 
 // update
-export async function update(id, company, position, status) {
+export async function update(
+  id,
+  company,
+  position,
+  status,
+  date_applied,
+  date_interview
+) {
   return await Job.findByIdAndUpdate(
     id,
-    { company, position, status },
+    { company, position, status, date_applied, date_interview },
     { new: true }
   );
 }

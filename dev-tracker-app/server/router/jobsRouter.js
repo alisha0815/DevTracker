@@ -1,19 +1,19 @@
 import express from "express";
 import * as jobsController from "../controllers/job.js";
-import { isAuth } from "../middleware/auth.js";
+// import { isAuth } from "../middleware/auth.js";
 
 const jobsRouter = express.Router();
 
 // GET
-jobsRouter.get("/list", isAuth, jobsController.retrieveJobs);
+jobsRouter.get("/list", jobsController.retrieveJobs);
 
 // POST
-jobsRouter.post("/add", isAuth, jobsController.createJob);
+jobsRouter.post("/add", jobsController.createJob);
 
 // DELETE
-jobsRouter.delete("/list/:id", isAuth, jobsController.removeJob);
+jobsRouter.delete("/list/:id", jobsController.removeJob);
 
 // PUT
-jobsRouter.put("/edit/:id", isAuth, jobsController.updateJop);
+jobsRouter.put("/edit/:id", jobsController.updateJop);
 
 export default jobsRouter;
