@@ -12,6 +12,13 @@ export const jobService = {
     return response.json();
   },
 
+  async filterJobs(position) {
+    let filteredJobs = await this.getAllJobs.filter(
+      (job) => (job.position = position)
+    );
+    return filteredJobs;
+  },
+
   async createJob(company, position, status) {
     const response = await fetch(`${baseURL}/add`, {
       method: "POST",
