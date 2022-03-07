@@ -1,15 +1,8 @@
-// import { useDispatch, useSelector } from "react-redux";
-// import { addNewJob } from "../../redux/actions/jobsActions";
 import { jobService } from "../../service/jobService";
-
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import List from "../List/List";
 
-const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
-  //   const jobItems = useSelector((state) => state.jobs);
-  //   const dispatch = useDispatch();
-
+const Add = ({ job, setJob, jobs, setJobs }) => {
   const inputHandler = (e) => {
     e.preventDefault();
     const value = e.target.value;
@@ -24,7 +17,6 @@ const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
     const { company, position, status, date_applied, date_interview } =
       e.target;
 
-    // if(isEditing)
     const newJob = await jobService.createJob(
       company.value,
       position.value,
@@ -33,8 +25,7 @@ const Add = ({ job, setJob, jobs, setJobs, isEditing }) => {
       date_interview.value
     );
     setJobs([newJob, ...jobs]);
-    // dispatch(addNewJob(company.value, position.value, status.value));
-    // await jobService.createJob(company.value, position.value, status.value);
+
     setJob({
       company: "",
       position: "",

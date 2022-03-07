@@ -10,9 +10,6 @@ const Landing = () => {
     align-items: center;
     .left {
       flex: 2;
-      /* justify-content: center;
-      align-items: center; */
-      /* background-color: lightgreen; */
       margin: auto;
       h1 {
         font-size: 5em;
@@ -30,7 +27,6 @@ const Landing = () => {
       }
     }
     .right {
-      /* background-color: gray; */
       flex: 1;
     }
   `;

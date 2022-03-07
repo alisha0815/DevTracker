@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 const Home = () => {
   const HomeWrapper = styled.div`
-    /* background-color: blue; */
-    /* display: flex; */
     width: 100%;
   `;
   return (

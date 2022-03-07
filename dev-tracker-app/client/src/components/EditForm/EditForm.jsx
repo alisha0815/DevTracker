@@ -10,34 +10,33 @@ const EditForm = ({ jobs, triggerUpdate }) => {
 
   const editHandler = async (e) => {
     e.preventDefault();
-    const { company, position, status } = e.target;
-    console.log(company.value, position.value, status.value);
+    const { company, position, status, date_applied, date_interview } =
+      e.target;
     setUpdatedJob({
       id: id,
       company: company.value,
       position: position.value,
       status: status.value,
+      date_applied: date_applied.value,
+      date_interview: date_interview.value,
     });
 
     jobService
-      .updateJob(id, company.value, position.value, status.value)
+      .updateJob(
+        id,
+        company.value,
+        position.value,
+        status.value,
+        date_applied,
+        date_interview
+      )
       .then((res) => res.json())
       .then((data) => {
-        // KOSTAS: we update the `update` state of App via the `triggerUpdate` with a new random value, in order to trigger the useEffect of App
         triggerUpdate(Math.random());
         console.log(data);
       })
       .catch(console.error);
   };
-
-  //   const inputHandler = (e) => {
-  //     e.preventDefault();
-  // const value = e.target.value;
-  // setJob({
-  //   ...updatedJob,
-  //   [e.target.name]: value,
-  // });
-  //   };
 
   return (
     <div>
@@ -61,6 +60,18 @@ const EditForm = ({ jobs, triggerUpdate }) => {
             <option value="declined">declined</option>
             <option value="accepted">accepted</option>
           </select>
+          <label htmlFor="date_applied">Date Applied</label>
+          <input
+            name="date_applied"
+            type="datetime-local"
+            defaultValue={updatedJob.date_applied}
+          />
+          <label htmlFor="date_interview">Date Interview</label>
+          <input
+            name="date_interview"
+            type="datetime-local"
+            defaultValue={updatedJob.date_interview}
+          />
           <button>EDIT</button>
         </div>
       </form>

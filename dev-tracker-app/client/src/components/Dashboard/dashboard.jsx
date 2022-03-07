@@ -1,8 +1,6 @@
 import React from "react";
-import styledComponents from "styled-components";
 import ApplicationChart from "./ApplicationChart";
 import styled from "styled-components";
-import COLORS from "../../styles/styled.constants";
 
 const Dashboard = ({ jobs }) => {
   console.log(jobs);
@@ -19,7 +17,7 @@ const Dashboard = ({ jobs }) => {
 
   const Graph = styled.div`
     flex: 3;
-    background-color: yellow;
+    background-color: yellow; // more styling animaiton will be added
   `;
 
   const DashboardCard = styled.div`
