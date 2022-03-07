@@ -10,11 +10,12 @@ import {
   faBuilding,
   faCode,
   faCalendarDays,
-  faSquarePen,
   faBell,
   faRepeat,
+  faClipboard,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { SubTitle } from "chart.js";
 
 const List = ({ jobs, setJobs }) => {
   let navigate = useNavigate();
@@ -80,24 +81,32 @@ const List = ({ jobs, setJobs }) => {
 
   const Icon = styled.div`
     font-size: 1.5em;
-    display: inline-block;
+    /* display: inline-block;
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto; */
   `;
 
   const CompanyList = styled.div`
-    border: 1px solid blue;
+    box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 15px;
     width: 100%;
     display: flex;
     justify-content: center;
-    ul {
-      padding: 0;
+    .company--title {
+      font-size: 1.8em;
+      text-align: center;
+      padding: 1.2rem;
+    } 
+      h2 {
+        padding-left: 1.2rem;
+        display: inline-block;
+      }
     }
   `;
 
   const CompanyWrapper = styled.div`
-    border: 1px solid red;
     width: 100%;
+    font-size: 1.2em;
   `;
 
   const CompanyContainer = styled.div`
@@ -108,12 +117,40 @@ const List = ({ jobs, setJobs }) => {
     height: 700px;
     justify-content: center;
     padding: 2rem;
+    .sub--icon {
+      color: ${COLORS.button};
+    }
   `;
 
   const CardWrapper = styled.div`
-    padding-top: 3rem;
+    padding: 3rem;
+    .card--section {
+      padding-left: 1.2rem;
+    }
+    .update {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 1rem;
+      padding-right: 2rem;
+      padding-top: 1.4rem;
+      font-style: italic;
+    }
   `;
 
+  const CompanySubTitle = styled.div`
+    display: inline-block;
+    padding-left: 1.5rem;
+    span {
+      padding-left: 1rem;
+    }
+  `;
+
+  const CompanyCardButton = styled.div`
+    padding-top: 1rem;
+    padding-bottom: 1.4rem;
+    display: flex;
+    justify-content: space-evenly;
+  `;
   return (
     <>
       <ListWrapper>
@@ -190,51 +227,71 @@ const List = ({ jobs, setJobs }) => {
             {filteredJobs.map((job) => (
               <CompanyList key={job.id}>
                 <CompanyWrapper>
-                  <li>
-                    <h1>
-                      {" "}
-                      <FontAwesomeIcon icon={faBuilding} />
-                      {job.company}
-                    </h1>
-                  </li>
-                  <li>
-                    <FontAwesomeIcon icon={faCode} />
-                    {job.position}
-                  </li>
-                  <li>
-                    <FontAwesomeIcon icon={faCalendarDays} />
-                    {job.status}
-                  </li>
-                  {job.date_applied && (
+                  <div className="card--section">
                     <li>
-                      Date applied: {moment(job.date_applied).format("llll")}
+                      <div className="company--title">
+                        {" "}
+                        <FontAwesomeIcon
+                          icon={faBuilding}
+                          className="sub--icon"
+                        />
+                        <h2>{job.company}</h2>
+                      </div>
                     </li>
-                  )}
+                    <li>
+                      <FontAwesomeIcon icon={faCode} className="sub--icon" />
+                      <CompanySubTitle>{job.position}</CompanySubTitle>
+                    </li>
+                    <li>
+                      {" "}
+                      <FontAwesomeIcon
+                        icon={faClipboard}
+                        className="sub--icon"
+                      />
+                      <CompanySubTitle> {job.status}</CompanySubTitle>
+                    </li>
 
-                  {job.date_interview && (
-                    <>
-                      <h4>
-                        <FontAwesomeIcon icon={faBell} />
-                        Reminder
-                      </h4>
-                      <li>{moment(job.date_interview).format("llll")}</li>
-                    </>
-                  )}
-                  <li>
+                    {job.date_applied && (
+                      <li>
+                        <FontAwesomeIcon
+                          icon={faCalendarDays}
+                          className="sub--icon"
+                        />
+                        <CompanySubTitle>Date applied</CompanySubTitle>
+                        <span>{moment(job.date_applied).format("ll")}</span>
+                      </li>
+                    )}
+
+                    {job.date_interview && (
+                      <>
+                        <h4>
+                          <FontAwesomeIcon
+                            icon={faBell}
+                            className="sub--icon"
+                          />
+                          Reminder
+                        </h4>
+                        <li>{moment(job.date_interview).format("llll")}</li>
+                      </>
+                    )}
+                  </div>
+                  <li className="update">
                     <FontAwesomeIcon icon={faRepeat} />
                     Last update {moment(job.updatedAt).startOf("day").fromNow()}
                   </li>
 
-                  <Icon>
-                    <button onClick={() => editHandler(job.id)}>
-                      <FontAwesomeIcon icon={faPenToSquare} />
-                    </button>
-                  </Icon>
-                  <Icon>
-                    <button onClick={() => deleteHandler(job.id)}>
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </button>
-                  </Icon>
+                  <CompanyCardButton>
+                    <Icon>
+                      <button onClick={() => editHandler(job.id)}>
+                        <FontAwesomeIcon icon={faPenToSquare} />
+                      </button>
+                    </Icon>
+                    <Icon>
+                      <button onClick={() => deleteHandler(job.id)}>
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </button>
+                    </Icon>
+                  </CompanyCardButton>
                 </CompanyWrapper>
               </CompanyList>
             ))}
