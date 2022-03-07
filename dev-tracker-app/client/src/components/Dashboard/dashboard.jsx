@@ -1,33 +1,80 @@
 import React from "react";
+import styledComponents from "styled-components";
 import ApplicationChart from "./ApplicationChart";
+import styled from "styled-components";
+import COLORS from "../../styles/styled.constants";
 
 const Dashboard = ({ jobs }) => {
   console.log(jobs);
   const filteredStatus = (str) =>
     [...jobs].filter((job) => job.status === str).length;
 
+  const DashboardWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+  `;
+  const DashboardContainer = styled.div`
+    flex: 2;
+  `;
+
+  const Graph = styled.div`
+    flex: 3;
+    background-color: yellow;
+  `;
+
+  const DashboardCard = styled.div`
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h3,
+    h4 {
+      text-align: center;
+    }
+    .applied,
+    .phone,
+    .technical,
+    .results {
+      width: 100%;
+      height: 100%;
+      box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
+      border-radius: 15px;
+      overflow: hidden;
+      margin: 0 auto;
+      height: 20vh;
+      margin: 2rem;
+    }
+  `;
+
   return (
     <>
-      <h1>This is Deashboard</h1>
-      <ul>
-        <li>
-          <h3>Applied Jobs: {jobs.length}</h3>
-        </li>
-        <li>
-          <h3>Phone-interview: {filteredStatus("phone-interview")}</h3>
-        </li>
-        <li>
-          <h3>Technical interview: {filteredStatus("technical interview")}</h3>
-        </li>
-        <li>
-          <h4>Results</h4>
-          <h4>Declined: {filteredStatus("declined")}</h4>
-          <h4>Accepted: {filteredStatus("accepted")}</h4>
-        </li>
-      </ul>
-      <div>
-        <ApplicationChart jobs={jobs} />
-      </div>
+      <DashboardWrapper>
+        <DashboardContainer>
+          <DashboardCard>
+            <div className="applied">
+              <h3>Applied</h3>
+              <h4>{jobs.length}</h4>
+            </div>
+            <div className="phone">
+              <h3>Phone Interview</h3>
+              <h4>{filteredStatus("phone-interview")}</h4>
+            </div>
+            <div className="technical">
+              <h3>Technical Interview</h3>
+              <h4>{filteredStatus("technical interview")}</h4>
+            </div>
+            <div className="results">
+              <h4>Results</h4>
+              <h4>Declined: {filteredStatus("declined")}</h4>
+              <h4>Accepted: {filteredStatus("accepted")}</h4>
+            </div>
+          </DashboardCard>
+        </DashboardContainer>
+        <Graph>
+          <div>
+            <ApplicationChart jobs={jobs} />
+          </div>
+        </Graph>
+      </DashboardWrapper>
     </>
   );
 };
