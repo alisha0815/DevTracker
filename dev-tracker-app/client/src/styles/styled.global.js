@@ -5,7 +5,12 @@ const GlobalStyle = createGlobalStyle`
   * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0;     
+      padding: 0;  
+      :focus {
+   outline: 0;
+
+}
+ }   
   }
   body {
     background-color: ${COLORS.background};
