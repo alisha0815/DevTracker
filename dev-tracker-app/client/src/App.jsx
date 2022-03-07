@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import { useSelector } from "react-redux";
-import {
-  Route,
-  Routes,
-  BrowserRouter as Router,
-  useLocation,
-} from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Dashboard from "./components/Dashboard/dashboard";
 import EditForm from "./components/EditForm/EditForm";
 import Home from "./components/Home/Home";
@@ -44,6 +39,7 @@ const App = () => {
         <GlobalStyle />
         <>
           <Router>
+            <Navbar />
             <Routes>
               <Route exact path="/" element={<Home />} />
               <Route

@@ -4,8 +4,10 @@ import styled from "styled-components";
 const Landing = () => {
   const LandingWrapper = styled.div`
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
     .left {
       flex: 2;
       /* justify-content: center;

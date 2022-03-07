@@ -1,8 +1,7 @@
-import React, { useState } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 // import { addNewJob } from "../../redux/actions/jobsActions";
 import { jobService } from "../../service/jobService";
-import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import List from "../List/List";

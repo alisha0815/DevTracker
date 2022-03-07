@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../Navbar/Navbar";
 import Landing from "./Landing";
 import styled from "styled-components";
 
@@ -11,7 +10,6 @@ const Home = () => {
   `;
   return (
     <HomeWrapper>
-      <Navbar />
       <Landing />
     </HomeWrapper>
   );
