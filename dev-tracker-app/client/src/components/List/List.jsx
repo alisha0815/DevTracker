@@ -4,13 +4,21 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { jobService } from "../../service/jobService";
 import COLORS from "../../styles/styled.constants";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faTrashCan,
+  faBuilding,
+  faCode,
+  faCalendarDays,
+  faSquarePen,
+  faBell,
+  faRepeat,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const List = ({ jobs, setJobs }) => {
   let navigate = useNavigate();
-  const [filteredJobs, setFilteredJobs] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState(jobs);
   const editHandler = (id) => {
     navigate(`/edit/${id}`);
   };
@@ -19,6 +27,7 @@ const List = ({ jobs, setJobs }) => {
     jobService
       .deleteJob(id)
       .then(() => setJobs(jobs.filter((job) => job.id !== id)));
+    console.log("deleted");
   };
 
   const filterPositionHandler = (e) => {
@@ -91,87 +100,111 @@ const List = ({ jobs, setJobs }) => {
     width: 100%;
   `;
 
-  return (
-    <ListWrapper>
-      <ListButton>
-        <PositionButton>
-          <TagButton
-            className="tag--btn"
-            value="all"
-            onClick={() => setFilteredJobs(jobs)}
-          >
-            All
-          </TagButton>
-          <TagButton
-            className="tag--btn"
-            value="frontend
-           "
-            onClick={(e) => filterPositionHandler(e)}
-          >
-            Frontend
-          </TagButton>
-          <TagButton
-            className="tag--btn"
-            value="backend"
-            onClick={(e) => filterPositionHandler(e)}
-          >
-            Backend
-          </TagButton>
-          <TagButton
-            className="tag--btn"
-            value="fullstack"
-            onClick={(e) => filterPositionHandler(e)}
-          >
-            Fullstack
-          </TagButton>
-        </PositionButton>
-        <StatusButton>
-          <TagButton
-            className="tag--btn"
-            value="applied"
-            onClick={(e) => filterStatusHandler(e)}
-          >
-            Applied
-          </TagButton>
-          <TagButton
-            className="tag--btn"
-            value="phone-interview"
-            onClick={(e) => filterStatusHandler(e)}
-          >
-            Phone interview
-          </TagButton>
-          <TagButton
-            className="tag--btn"
-            value="technical interview"
-            onClick={(e) => filterStatusHandler(e)}
-          >
-            Technical Interview
-          </TagButton>
-          <TagButton value="decliend" onClick={(e) => filterStatusHandler(e)}>
-            Declined
-          </TagButton>
-          <TagButton
-            className="tag--btn"
-            value="accepted"
-            onClick={(e) => filterStatusHandler(e)}
-          >
-            Accepted
-          </TagButton>
-        </StatusButton>
-      </ListButton>
+  const CompanyContainer = styled.div`
+    align-items: start;
+    display: grid;
+    grid-gap: 36px;
+    grid-template-columns: repeat(auto-fit, 500px);
+    height: 700px;
+    justify-content: center;
+    padding: 2rem;
+  `;
 
-      <div>
-        <ul>
+  const CardWrapper = styled.div`
+    padding-top: 3rem;
+  `;
+
+  return (
+    <>
+      <ListWrapper>
+        <ListButton>
+          <PositionButton>
+            <TagButton
+              className="tag--btn"
+              value="all"
+              onClick={() => setFilteredJobs(jobs)}
+            >
+              All
+            </TagButton>
+            <TagButton
+              className="tag--btn"
+              value="frontend
+           "
+              onClick={(e) => filterPositionHandler(e)}
+            >
+              Frontend
+            </TagButton>
+            <TagButton
+              className="tag--btn"
+              value="backend"
+              onClick={(e) => filterPositionHandler(e)}
+            >
+              Backend
+            </TagButton>
+            <TagButton
+              className="tag--btn"
+              value="fullstack"
+              onClick={(e) => filterPositionHandler(e)}
+            >
+              Fullstack
+            </TagButton>
+          </PositionButton>
+          <StatusButton>
+            <TagButton
+              className="tag--btn"
+              value="applied"
+              onClick={(e) => filterStatusHandler(e)}
+            >
+              Applied
+            </TagButton>
+            <TagButton
+              className="tag--btn"
+              value="phone-interview"
+              onClick={(e) => filterStatusHandler(e)}
+            >
+              Phone interview
+            </TagButton>
+            <TagButton
+              className="tag--btn"
+              value="technical interview"
+              onClick={(e) => filterStatusHandler(e)}
+            >
+              Technical Interview
+            </TagButton>
+            <TagButton value="decliend" onClick={(e) => filterStatusHandler(e)}>
+              Declined
+            </TagButton>
+            <TagButton
+              className="tag--btn"
+              value="accepted"
+              onClick={(e) => filterStatusHandler(e)}
+            >
+              Accepted
+            </TagButton>
+          </StatusButton>
+        </ListButton>
+
+        <CardWrapper>
           <h1>Company ({filteredJobs.length})</h1>
-          {filteredJobs.map((job) => (
-            <ul key={job.id}>
-              <CompanyList>
+          <CompanyContainer>
+            {filteredJobs.map((job) => (
+              <CompanyList key={job.id}>
                 <CompanyWrapper>
                   <li>
-                    <h1>{job.company}</h1>
+                    <h1>
+                      {" "}
+                      <FontAwesomeIcon icon={faBuilding} />
+                      {job.company}
+                    </h1>
                   </li>
-                  <li>{job.position}</li>
-                  <li>{job.status}</li>
+                  <li>
+                    <FontAwesomeIcon icon={faCode} />
+                    {job.position}
+                  </li>
+                  <li>
+                    <FontAwesomeIcon icon={faCalendarDays} />
+                    {job.status}
+                  </li>
                   {job.date_applied && (
                     <li>
                       Date applied: {moment(job.date_applied).format("llll")}
@@ -180,13 +213,16 @@ const List = ({ jobs, setJobs }) => {
 
                   {job.date_interview && (
                     <>
-                      <h4>Interview Reminder</h4>
+                      <h4>
+                        <FontAwesomeIcon icon={faBell} />
+                        Reminder
+                      </h4>
                       <li>{moment(job.date_interview).format("llll")}</li>
                     </>
                   )}
                   <li>
-                    Lates update{" "}
-                    {moment(job.updatedAt).startOf("day").fromNow()}
+                    <FontAwesomeIcon icon={faRepeat} />
+                    Last update {moment(job.updatedAt).startOf("day").fromNow()}
                   </li>
 
                   <Icon>
@@ -201,11 +237,11 @@ const List = ({ jobs, setJobs }) => {
                   </Icon>
                 </CompanyWrapper>
               </CompanyList>
-            </ul>
-          ))}
-        </ul>
-      </div>
-    </ListWrapper>
+            ))}
+          </CompanyContainer>
+        </CardWrapper>
+      </ListWrapper>
+    </>
   );
 };
 

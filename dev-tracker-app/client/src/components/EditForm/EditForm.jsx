@@ -27,8 +27,8 @@ const EditForm = ({ jobs, triggerUpdate }) => {
         company.value,
         position.value,
         status.value,
-        date_applied,
-        date_interview
+        date_applied.value,
+        date_interview.value
       )
       .then((res) => res.json())
       .then((data) => {
