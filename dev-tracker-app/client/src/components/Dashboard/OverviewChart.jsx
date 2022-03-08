@@ -7,7 +7,6 @@ Chart.register(ArcElement);
 
 const OverviewChart = ({ jobData }) => {
   const OverviewWrapper = styled.div`
-    width: 100%;
     position: relative;
   `;
   const GraphWrapper = styled.div`
@@ -16,9 +15,6 @@ const OverviewChart = ({ jobData }) => {
     height: 70vh;
     box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
     border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 2rem;
     position: absolute;
     left: 50%;
