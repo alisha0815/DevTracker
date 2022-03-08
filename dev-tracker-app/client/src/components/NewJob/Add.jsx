@@ -38,10 +38,6 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
     });
   };
 
-  // const cancelHandler = () => {
-  //   <Link to="/list" />;
-  // };
-
   const Form = styled.div`
     box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
     border-radius: 20px;

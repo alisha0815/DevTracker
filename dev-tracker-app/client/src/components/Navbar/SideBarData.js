@@ -30,7 +30,7 @@ export const SidebarData = [
   },
   {
     title: "Reminder",
-    path: "#",
+    path: "/reminder",
     icon: <FaIcons.FaCalendarAlt />,
     cName: "nav-text",
   },

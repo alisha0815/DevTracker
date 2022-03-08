@@ -6,24 +6,27 @@ import { SidebarData } from "./SideBarData";
 // import COLORS from "../../styles/styled.constants";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-// import { IconContext } from "react-icons";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
-
+  const hideSidebar = () => setSidebar(false);
   const Navbar = styled.div`
     background-color: yellow;
-    display: flex;
-    height: 80px;
+    /* display: flex; */
+    display: inline-block;
+    /* height: 100vh; */
+    width: 100%;
     justify-content: start;
     align-items: center;
     .menu-bars {
       margin-left: 2rem;
       font-size: 2rem;
       background: none;
+      transition: all 0.5s ease-in-out;
     }
+
     .close-bars {
       font-size: 1.8rem;
       background: none;
@@ -32,7 +35,7 @@ const Navbar = () => {
     }
     .nav-menu {
       background-color: #060b26;
-      width: 280px;
+      width: 14rem;
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -102,7 +105,7 @@ const Navbar = () => {
           {SidebarData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
-                <Link to={item.path}>
+                <Link to={item.path} onClick={() => hideSidebar()}>
                   {item.icon}
                   <span>{item.title}</span>
                 </Link>

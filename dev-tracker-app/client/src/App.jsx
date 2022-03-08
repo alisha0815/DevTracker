@@ -7,6 +7,7 @@ import Home from "./components/Home/Home";
 import List from "./components/List/List";
 import Navbar from "./components/Navbar/Navbar";
 import Add from "./components/NewJob/Add";
+import Reminder from "./components/Reminder/Reminder";
 import { jobService } from "./service/jobService";
 import GlobalStyle from "./styles/styled.global";
 
@@ -79,6 +80,11 @@ const App = () => {
                     setJobs={setJobs}
                   />
                 }
+              />
+              <Route
+                exact
+                path="/reminder"
+                element={<Reminder jobs={jobs} />}
               />
             </Routes>
           </Router>

@@ -42,7 +42,6 @@ const List = ({ jobs, setJobs }) => {
   };
 
   const ListWrapper = styled.div`
-    margin-top: 4em;
     width: 100%;
     height: 100vh;
   `;

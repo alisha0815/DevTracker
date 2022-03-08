@@ -21,6 +21,12 @@ const Dashboard = ({ jobs }) => {
   `;
 
   const DashboardCard = styled.div`
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fit, 350px);
+    /* height: px; */
+    justify-content: center;
+    padding: 2rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -35,7 +41,7 @@ const Dashboard = ({ jobs }) => {
       width: 100%;
       height: 100%;
       box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
-      border-radius: 15px;
+      border-radius: 20px;
       overflow: hidden;
       margin: 0 auto;
       height: 20vh;
