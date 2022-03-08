@@ -10,6 +10,7 @@ import {
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import COLORS from "../../styles/styled.constants";
 <i class="fa-solid fa-arrow-left-long-to-line"></i>;
 const Dashboard = ({ jobs }) => {
   console.log(jobs);
@@ -54,10 +55,15 @@ const Dashboard = ({ jobs }) => {
     h4 {
       text-align: center;
     }
+    .btn--icon {
+      font-size: 2rem;
+      font-weight: 800;
+    }
     .applied,
     .phone,
     .technical,
     .results {
+      padding-right: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -68,8 +74,24 @@ const Dashboard = ({ jobs }) => {
       overflow: hidden;
       margin: 0.7rem;
       padding-left: 1rem;
-
+      padding-top: 1rem;
+      padding-bottom: 1rem;
       height: 20vh;
+    }
+    .results {
+      background-color: ${COLORS.button};
+      color: white;
+      .filter--num {
+        color: ${COLORS.background};
+      }
+      div {
+        padding: 0;
+      }
+      .btn--icon {
+        color: white;
+        font-size: 2rem;
+        font-weight: 800;
+      }
     }
     .filter--num {
       flex: 1;
@@ -77,8 +99,9 @@ const Dashboard = ({ jobs }) => {
       text-align: center;
       padding-left: 1rem;
       margin: 0 auto;
-      color: red;
-      font-size: 2.5rem;
+      font-weight: 900;
+      color: ${COLORS.button};
+      font-size: 3rem;
     }
     h3 {
       flex: 3;
@@ -91,45 +114,59 @@ const Dashboard = ({ jobs }) => {
         <DashboardContainer>
           <DashboardCard>
             <div className="applied">
-              <BiIcons.BiArrowFromRight />
+              <button className="btn--icon">
+                <BiIcons.BiLeftArrowCircle />
+              </button>
               <div className="filter--num">{jobs.length}</div>
               <h3>
-                <AiIcons.AiFillFileAdd />
+                <div className="dashboard--icon">
+                  <AiIcons.AiFillFileAdd />
+                </div>
                 Applied
               </h3>
             </div>
             <div className="phone">
-              <BiIcons.BiArrowFromRight />
+              <button className="btn--icon">
+                <BiIcons.BiLeftArrowCircle />
+              </button>
               <div className="filter--num">
                 {filteredStatus("phone-interview")}
               </div>
               <h3>
-                <BsIcons.BsFillPhoneFill />
+                <div className="dashboard--icon">
+                  <BsIcons.BsFillPhoneFill />
+                </div>
                 Interview
               </h3>
             </div>
             <div className="technical">
-              <BiIcons.BiArrowFromRight />
+              <button className="btn--icon">
+                <BiIcons.BiLeftArrowCircle />
+              </button>
               <div className="filter--num">
                 {filteredStatus("technical interview")}
               </div>
               <h3>
-                <BsIcons.BsFillFileCodeFill />
+                <div className="dashboard--icon">
+                  <BsIcons.BsFillFileCodeFill />
+                </div>
                 Interview
               </h3>
             </div>
-            <div>
+            <div className="results">
+              <button className="btn--icon">
+                <BiIcons.BiLeftArrowCircle />
+              </button>
               <div className="filter--num">
-                <BiIcons.BiArrowFromRight />
-                <AiIcons.AiOutlineSend />
-                Results
-              </div>
-              <div className="filter--num">
-                <FontAwesomeIcon icon={faCircleXmark} />
+                <div>
+                  <FontAwesomeIcon icon={faCircleXmark} />
+                </div>
                 {filteredStatus("declined")}
               </div>
               <div className="filter--num">
-                <FontAwesomeIcon icon={faCircleCheck} />{" "}
+                <div>
+                  <FontAwesomeIcon icon={faCircleCheck} />{" "}
+                </div>
                 {filteredStatus("accepted")}
               </div>
             </div>
