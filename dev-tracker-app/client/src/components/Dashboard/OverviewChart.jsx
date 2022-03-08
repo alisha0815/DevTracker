@@ -19,26 +19,39 @@ const OverviewChart = ({ jobData }) => {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    background-color: white;
 
     /* overflow: hidden; */
   `;
   return (
     <OverviewWrapper>
-      <h1>This is overview chart</h1>
       <GraphWrapper>
         <Doughnut
-          // height={50}
-          // width={50}
+          height={200}
+          width={200}
           options={{
             responsive: true,
             maintainAspectRatio: false,
+            // segmentShowStroke: false,
+            // animateScale: true,
+
             plugins: {
               title: {
                 display: true,
-                text: "Job Application Tracker",
+                text: "Job Application Overview",
                 padding: {
                   top: 10,
                   bottom: 30,
+                },
+                font: {
+                  size: 28,
+                },
+              },
+              legend: {
+                labels: {
+                  font: {
+                    size: 20,
+                  },
                 },
               },
             },
@@ -54,7 +67,7 @@ const OverviewChart = ({ jobData }) => {
               {
                 label: "Job application",
                 data: jobData,
-                backgroundColor: ["#E8CDCC", "#D1E9EA", "#D3CCE8", "#E7E8CC"],
+                backgroundColor: ["#FEDBDD", "#FFF1E3", "#DCF5E8", "#B9EAEA"],
               },
             ],
           }}

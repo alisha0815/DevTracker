@@ -27,38 +27,6 @@ const ApplicationChart = ({ jobs }) => {
     <>
       <div>
         <OverviewChart jobData={jobData} />
-        {/* <Doughnut
-          height={400}
-          width={400}
-          options={{
-            maintainAspectRatio: false,
-            plugins: {
-              title: {
-                display: true,
-                text: "Job Application Tracker",
-                padding: {
-                  top: 10,
-                  bottom: 30,
-                },
-              },
-            },
-          }}
-          data={{
-            labels: [
-              "Phone Interview",
-              "Technical-Interview",
-              "Declined",
-              "Accepted",
-            ],
-            datasets: [
-              {
-                label: "Job application",
-                data: jobData,
-                backgroundColor: ["#E8CDCC", "#D1E9EA", "#D3CCE8", "#E7E8CC"],
-              },
-            ],
-          }}
-        /> */}
       </div>
       {/* // Progress chart */}
       {/* <div>
