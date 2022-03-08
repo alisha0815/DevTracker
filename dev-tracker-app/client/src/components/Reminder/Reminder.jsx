@@ -48,10 +48,9 @@ const Reminder = ({ jobs }) => {
   `;
 
   const CalendarWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    margin: 0 auto;
+    width: 70%;
+    height: 100vh;
   `;
 
   console.log(interviews);
