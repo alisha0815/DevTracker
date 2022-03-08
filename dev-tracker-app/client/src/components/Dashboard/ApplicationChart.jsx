@@ -1,5 +1,6 @@
 import React from "react";
 import "chart.js/auto";
+
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
 import OverviewChart from "./OverviewChart";
@@ -15,13 +16,13 @@ const ApplicationChart = ({ jobs }) => {
     "accepted",
   ];
   const jobData = status.map((el) => filteredJobs(el));
-  console.log(jobData);
+  // console.log(jobData);
 
   const progressData = jobData
     .map((job) => (job / jobs.length) * 100)
     .map((item) => item.toFixed(2));
 
-  console.log(progressData);
+  // console.log(progressData);
 
   return (
     <>

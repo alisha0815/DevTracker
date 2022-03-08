@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+
 import ApplicationChart from "./ApplicationChart";
 import * as AiIcons from "react-icons/ai";
 import * as BsIcons from "react-icons/bs";
 import * as BiIcons from "react-icons/bi";
-
 import styled from "styled-components";
 import {
   faCircleCheck,
@@ -17,6 +17,15 @@ const Dashboard = ({ jobs }) => {
   console.log(jobs);
   const filteredStatus = (str) =>
     [...jobs].filter((job) => job.status === str).length;
+
+  const handleAddChart = () => {
+    console.log("chart show button clicked!");
+  };
+
+  const [chart, setChart] = useState(false);
+
+  const showChart = () => setChart(!chart);
+  const hideChart = () => setChart(false);
 
   const DashboardWrapper = styled.div`
     display: flex;
@@ -34,9 +43,16 @@ const Dashboard = ({ jobs }) => {
   const Graph = styled.div`
     flex: 3;
     flex-direction: column;
+
     padding-top: 2rem;
     .chart--img {
-      border: 1px solid blue;
+      /* border: 1px solid blue; */
+    }
+    .chart {
+      opacity: 0;
+    }
+    .chart.active {
+      opacity: 1;
     }
   `;
 
@@ -117,7 +133,7 @@ const Dashboard = ({ jobs }) => {
           <DashboardCard>
             <div className="applied">
               <button className="btn--icon">
-                <BiIcons.BiLeftArrowCircle />
+                <BiIcons.BiLeftArrowCircle onClick={() => showChart()} />
               </button>
               <div className="filter--num">{jobs.length}</div>
               <h3>
@@ -176,7 +192,7 @@ const Dashboard = ({ jobs }) => {
         </DashboardContainer>
         {/* Graph Panel */}
         <Graph>
-          <div className="chart--img">
+          <div className={chart ? "chart active" : "chart"}>
             <ApplicationChart jobs={jobs} />
           </div>
         </Graph>
