@@ -8,16 +8,18 @@ const Dashboard = ({ jobs }) => {
     [...jobs].filter((job) => job.status === str).length;
 
   const DashboardWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-rows: repeat(autofit 2);
+    /* grid-template-rows: repeat(5, 100px); */
   `;
   const DashboardContainer = styled.div`
-    flex: 2;
+    /* flex: 1; */
   `;
 
   const Graph = styled.div`
-    flex: 3;
-    background-color: yellow; // more styling animaiton will be added
+    /* flex: 1; */
+    background-color: lightblue; // more styling animaiton will be added
   `;
 
   const DashboardCard = styled.div`

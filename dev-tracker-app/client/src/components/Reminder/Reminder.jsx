@@ -6,6 +6,9 @@ import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
+import * as FaIcons from "react-icons/fa";
+import moment from "moment";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
@@ -26,27 +29,50 @@ const Reminder = ({ jobs }) => {
   ]);
   console.log(events);
 
-  const interviews = events.map((event) => ({
+  const interviews = [...events].map((event) => ({
     title: event.company,
-    start: event.date_interview,
-    end: event.date_interview,
+    start: moment(event["date_interview"]).toDate(),
+    end: moment(event["date_interview"]).toDate(),
   }));
+
+  const ReminderWrapper = styled.div`
+    text-align: center;
+    margin: 0;
+    h2 {
+      font-size: 1.7em;
+      padding-top: 2rem;
+    }
+    span {
+      padding-left: 1rem;
+    }
+  `;
+
+  const CalendarWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  `;
 
   console.log(interviews);
 
   return (
     <>
-      <div>
-        <h1>Reminder</h1>
-        <h1>Calendar</h1>
-        <Calendar
-          localizer={localizer}
-          events={interviews}
-          startAccessor="start"
-          endAccessor="end"
-          style={{ height: 500, margin: "50px" }}
-        />
-      </div>
+      <ReminderWrapper>
+        <h2>
+          <FaIcons.FaCalendarAlt />
+          <span>Interview Reminders</span>
+        </h2>
+        <CalendarWrapper>
+          <Calendar
+            localizer={localizer}
+            events={interviews}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 500, margin: "50px" }}
+          />
+        </CalendarWrapper>
+      </ReminderWrapper>
     </>
   );
 };

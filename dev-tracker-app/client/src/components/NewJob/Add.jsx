@@ -4,8 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import styled from "styled-components";
 import COLORS from "../../styles/styled.constants";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const Add = ({ job, setJob, jobs, setJobs }) => {
+  let navigate = useNavigate();
+
   const inputHandler = (e) => {
     e.preventDefault();
     const value = e.target.value;
@@ -36,6 +39,7 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
       date_applied: "",
       date_interview: "",
     });
+    navigate("/list");
   };
 
   const Form = styled.div`
@@ -145,7 +149,7 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
               className="applied"
               name="date_applied"
               type="date"
-              onfocus="(this.type = 'date')"
+              // onfocus="(this.type = 'date')"
               value={job.date_applied}
               onChange={inputHandler}
             />
@@ -161,9 +165,7 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
             />
           </FormField>
           <AddButton>
-            <Link to={"/list"}>
-              <button className="add--btn">Add</button>
-            </Link>
+            <button className="add--btn">Add</button>
             <Link to={"/list"}>
               <button className="cancel--btn">Cancel</button>
             </Link>
