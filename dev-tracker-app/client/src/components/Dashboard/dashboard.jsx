@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import COLORS from "../../styles/styled.constants";
+import OverviewChart from "./OverviewChart";
 <i class="fa-solid fa-arrow-left-long-to-line"></i>;
 const Dashboard = ({ jobs }) => {
   console.log(jobs);
@@ -111,6 +112,7 @@ const Dashboard = ({ jobs }) => {
   return (
     <>
       <DashboardWrapper>
+        {/* Summary Panel */}
         <DashboardContainer>
           <DashboardCard>
             <div className="applied">
@@ -172,6 +174,7 @@ const Dashboard = ({ jobs }) => {
             </div>
           </DashboardCard>
         </DashboardContainer>
+        {/* Graph Panel */}
         <Graph>
           <div className="chart--img">
             <ApplicationChart jobs={jobs} />

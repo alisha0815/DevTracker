@@ -2,6 +2,7 @@ import React from "react";
 import "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
+import OverviewChart from "./OverviewChart";
 Chart.register(ArcElement);
 
 const ApplicationChart = ({ jobs }) => {
@@ -25,7 +26,8 @@ const ApplicationChart = ({ jobs }) => {
   return (
     <>
       <div>
-        <Doughnut
+        <OverviewChart jobData={jobData} />
+        {/* <Doughnut
           height={400}
           width={400}
           options={{
@@ -56,10 +58,10 @@ const ApplicationChart = ({ jobs }) => {
               },
             ],
           }}
-        />
+        /> */}
       </div>
       {/* // Progress chart */}
-      <div>
+      {/* <div>
         <Doughnut
           height={400}
           width={400}
@@ -88,9 +90,9 @@ const ApplicationChart = ({ jobs }) => {
             ],
           }}
         />
-      </div>
+      </div> */}
       {/* // Progress chart --Technical Interivew*/}
-      <div>
+      {/* <div>
         <Doughnut
           height={400}
           width={400}
@@ -119,9 +121,9 @@ const ApplicationChart = ({ jobs }) => {
             ],
           }}
         />
-      </div>
+      </div> */}
       {/* // Progress chart --Accepted*/}
-      <div>
+      {/* <div>
         <Doughnut
           height={400}
           width={400}
@@ -150,7 +152,7 @@ const ApplicationChart = ({ jobs }) => {
             ],
           }}
         />
-      </div>
+      </div> */}
     </>
   );
 };
