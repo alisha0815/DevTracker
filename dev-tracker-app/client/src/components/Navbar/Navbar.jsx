@@ -34,6 +34,7 @@ const Navbar = () => {
       right: 1.3rem;
     }
     .nav-menu {
+      z-index: 100;
       background-color: #060b26;
       width: 14rem;
       height: 100vh;
@@ -45,6 +46,7 @@ const Navbar = () => {
       transition: 850ms;
     }
     .nav-menu.active {
+      z-index: 100;
       left: 0;
       transition: 350ms;
     }
