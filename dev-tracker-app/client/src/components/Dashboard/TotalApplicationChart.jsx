@@ -5,7 +5,7 @@ import { Chart, ArcElement } from "chart.js";
 import styled from "styled-components";
 Chart.register(ArcElement);
 
-const OverviewChart = ({ jobData }) => {
+const TotalApplicationChart = ({ progressData }) => {
   const OverviewWrapper = styled.div`
     position: relative;
   `;
@@ -20,8 +20,6 @@ const OverviewChart = ({ jobData }) => {
     left: 50%;
     transform: translateX(-50%);
     background-color: white;
-
-    /* overflow: hidden; */
   `;
   return (
     <OverviewWrapper>
@@ -35,7 +33,7 @@ const OverviewChart = ({ jobData }) => {
             plugins: {
               title: {
                 display: true,
-                text: "Job Application Overview",
+                text: "Phone Interview",
                 padding: {
                   top: 10,
                   bottom: 30,
@@ -54,17 +52,12 @@ const OverviewChart = ({ jobData }) => {
             },
           }}
           data={{
-            labels: [
-              "Phone Interview",
-              "Technical-Interview",
-              "Declined",
-              "Accepted",
-            ],
+            labels: ["Job Applied", "Phone Interview"],
             datasets: [
               {
-                label: "Job application",
-                data: jobData,
-                backgroundColor: ["#FEDBDD", "#FFF1E3", "#DCF5E8", "#B9EAEA"],
+                label: "Phone Interview / Job Applied",
+                data: [100, progressData[0]],
+                backgroundColor: ["#FEDBDD", "#FFF1E3"],
               },
             ],
           }}
@@ -74,4 +67,4 @@ const OverviewChart = ({ jobData }) => {
   );
 };
 
-export default OverviewChart;
+export default TotalApplicationChart;

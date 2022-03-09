@@ -12,6 +12,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import COLORS from "../../styles/styled.constants";
 import OverviewChart from "./OverviewChart";
+import TotalApplicationChart from "./TotalApplicationChart";
 <i class="fa-solid fa-arrow-left-long-to-line"></i>;
 const Dashboard = ({ jobs }) => {
   console.log(jobs);
@@ -50,9 +51,11 @@ const Dashboard = ({ jobs }) => {
     }
     .chart {
       opacity: 0;
+      transition: all ease-in-out 250ms;
     }
     .chart.active {
       opacity: 1;
+      transition: all ease-in-out 250ms;
     }
   `;
 
@@ -132,8 +135,8 @@ const Dashboard = ({ jobs }) => {
         <DashboardContainer>
           <DashboardCard>
             <div className="applied">
-              <button className="btn--icon">
-                <BiIcons.BiLeftArrowCircle onClick={() => showChart()} />
+              <button className="btn--icon" onClick={() => showChart()}>
+                <BiIcons.BiLeftArrowCircle />
               </button>
               <div className="filter--num">{jobs.length}</div>
               <h3>
@@ -144,7 +147,7 @@ const Dashboard = ({ jobs }) => {
               </h3>
             </div>
             <div className="phone">
-              <button className="btn--icon">
+              <button className="btn--icon" onClick={() => showChart()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className="filter--num">
@@ -192,9 +195,19 @@ const Dashboard = ({ jobs }) => {
         </DashboardContainer>
         {/* Graph Panel */}
         <Graph>
-          <div className={chart ? "chart active" : "chart"}>
-            <ApplicationChart jobs={jobs} />
+          <div>
+            <ApplicationChart
+              jobs={jobs}
+              className={chart ? "chart active" : "chart"}
+            />
           </div>
+
+          {/* <div className={chart ? "chart active" : "chart"}>
+            <OverviewChart />
+          </div> */}
+          {/* <div className={chart ? "chart active" : "chart"}>
+            <OverviewChart />
+          </div> */}
         </Graph>
       </DashboardWrapper>
     </>

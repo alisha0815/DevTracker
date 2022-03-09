@@ -6,6 +6,7 @@ import { SidebarData } from "./SideBarData";
 // import COLORS from "../../styles/styled.constants";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
+import COLORS from "../../styles/styled.constants";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -13,13 +14,22 @@ const Navbar = () => {
   const showSidebar = () => setSidebar(!sidebar);
   const hideSidebar = () => setSidebar(false);
   const Navbar = styled.div`
-    background-color: yellow;
     /* display: flex; */
     display: inline-block;
     /* height: 100vh; */
     width: 100%;
     justify-content: start;
     align-items: center;
+    .logo {
+      position: absolute;
+      right: 30px;
+      top: 20px;
+      color: ${COLORS.button};
+      h2 {
+        font-size: 2.8em;
+        font-weight: bolder;
+      }
+    }
     .menu-bars {
       margin-left: 2rem;
       font-size: 2rem;
@@ -97,6 +107,9 @@ const Navbar = () => {
       <Link to="#" className="menu-bars">
         <FaIcons.FaBars onClick={showSidebar} />
       </Link>
+      <div className="logo">
+        <h2>DevT</h2>
+      </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import background from "../../img/background--img.jpg";
 
 const Landing = () => {
   const LandingWrapper = styled.div`
@@ -28,6 +29,12 @@ const Landing = () => {
     }
     .right {
       flex: 1;
+      img {
+        width: 500px;
+        height: 500px;
+
+        border-radius: 50%;
+      }
     }
   `;
 
@@ -43,7 +50,7 @@ const Landing = () => {
         </div>
       </div>
       <div className="right">
-        <p>image here</p>
+        <img src={background} alt="cover-img" />
       </div>
     </LandingWrapper>
   );

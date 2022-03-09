@@ -48,8 +48,34 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
     padding-top: 2.4rem;
     text-align: center;
     margin: 0 auto;
-    height: 100%;
-    max-width: 60%;
+    height: 90vh;
+    position: relative;
+    width: 100%;
+    width: 70%;
+    max-width: 50%;
+    .form--box {
+      z-index: 1000 !important;
+    }
+    .calendar {
+      /* display: flex; */
+
+      margin-left: 2rem;
+
+      /* .applied {
+        position: absolute;
+        bottom: 210px;
+        right: 140px;
+        width: 260px;
+        flex: 1;
+      }
+      .interview {
+        position: absolute;
+        bottom: 120px;
+        right: 140px;
+        width: 260px;
+        flex: 1;
+      } */
+    }
   `;
 
   const FormWrapper = styled.div`
@@ -92,11 +118,18 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
   `;
 
   const AddButton = styled.div`
-    background-color: yellow;
     text-align: center;
     .add--btn,
     .cancel--btn {
-      border: 1px solid blue;
+      width: 130px;
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .cancel--btn {
+      background-color: white;
+      color: ${COLORS.button};
+      border: 1px solid ${COLORS.button};
     }
   `;
 
@@ -104,11 +137,12 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
     <FormWrapper>
       <Form>
         <h1>Add a New Job</h1>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} className="form--box">
           {/* <label htmlFor="company">Company</label> */}
           <FormField>
             <div className="company">
               <input
+                className="input--filed"
                 type="text"
                 name="company"
                 value={job.company}
@@ -143,27 +177,31 @@ const Add = ({ job, setJob, jobs, setJobs }) => {
               <option value="accepted">accepted</option>
             </select>
           </FormField>
-          {/* <label htmlFor="date_applied">Date Applied</label> */}
-          <FormField>
-            <input
-              className="applied"
-              name="date_applied"
-              type="date"
-              // onfocus="(this.type = 'date')"
-              value={job.date_applied}
-              onChange={inputHandler}
-            />
-          </FormField>
-          {/* <label htmlFor="date_interview">Date Interview</label> */}
-          <FormField>
-            <input
-              className="interview"
-              name="date_interview"
-              type="datetime-local"
-              value={job.date_interview}
-              onChange={inputHandler}
-            />
-          </FormField>
+          <div className="calendar">
+            <label htmlFor="date_applied">Applied</label>
+            <FormField>
+              <input
+                className="applied"
+                name="date_applied"
+                type="date"
+                // onfocus="(this.type = 'date')"
+                value={job.date_applied}
+                onChange={inputHandler}
+              />
+            </FormField>
+          </div>
+          <div className="calendar">
+            <label htmlFor="date_interview">Interview</label>
+            <FormField>
+              <input
+                className="interview"
+                name="date_interview"
+                type="datetime-local"
+                value={job.date_interview}
+                onChange={inputHandler}
+              />
+            </FormField>
+          </div>
           <AddButton>
             <button className="add--btn">Add</button>
             <Link to={"/list"}>

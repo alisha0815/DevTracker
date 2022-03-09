@@ -29,13 +29,45 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   button {
-      background-color: transparent;
-      outline: none;
-      border: none;
-      cursor: poiner;
-      color: ${COLORS.button}
-      
+   padding: 0.8rem;
+    margin-top: 0.8rem;
+    
+    outline: none;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    background-color: ${COLORS.button};
+    transition: transform 250ms ease-in;
+  };
+
+    button:hover {
+    transform: scale(1.04);
+    opacity: 0.8;
   }
+
+
+
+    input, select {
+    width: 400px;
+    margin: 0 auto;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: 2px 2px 3px 3px darkgray;
+    border-radius: 15px;
+    margin-bottom: 1.1rem;
+  }
+
+  label {
+    font-size: 1.2em;
+    display: block;
+    text-align: left;
+    margin-bottom: 0.4rem;
+  }
+
 `;
 
 export default GlobalStyle;

@@ -76,6 +76,12 @@ const List = ({ jobs, setJobs }) => {
     width: 150px;
     height: 80px;
     border-radius: 30px;
+    background-color: white;
+    color: ${COLORS.button};
+    :hover {
+      background-color: ${COLORS.button};
+      color: white;
+    }
   `;
 
   const Icon = styled.div`
@@ -164,8 +170,7 @@ const List = ({ jobs, setJobs }) => {
             </TagButton>
             <TagButton
               className="tag--btn"
-              value="frontend
-           "
+              value="frontend"
               onClick={(e) => filterPositionHandler(e)}
             >
               Frontend
@@ -191,7 +196,7 @@ const List = ({ jobs, setJobs }) => {
               value="applied"
               onClick={(e) => filterStatusHandler(e)}
             >
-              Applied
+              Pending
             </TagButton>
             <TagButton
               className="tag--btn"
@@ -207,7 +212,7 @@ const List = ({ jobs, setJobs }) => {
             >
               Technical Interview
             </TagButton>
-            <TagButton value="decliend" onClick={(e) => filterStatusHandler(e)}>
+            <TagButton value="declined" onClick={(e) => filterStatusHandler(e)}>
               Declined
             </TagButton>
             <TagButton
@@ -256,7 +261,7 @@ const List = ({ jobs, setJobs }) => {
                           icon={faCalendarDays}
                           className="sub--icon"
                         />
-                        <CompanySubTitle>Date applied</CompanySubTitle>
+                        <CompanySubTitle>Applied :</CompanySubTitle>
                         <span>{moment(job.date_applied).format("ll")}</span>
                       </li>
                     )}
@@ -268,9 +273,10 @@ const List = ({ jobs, setJobs }) => {
                             icon={faBell}
                             className="sub--icon"
                           />
-                          Reminder
+                          <span>
+                            {moment(job.date_interview).format("llll")}
+                          </span>
                         </h4>
-                        <li>{moment(job.date_interview).format("llll")}</li>
                       </>
                     )}
                   </div>
