@@ -25,7 +25,6 @@ const OverviewChart = ({ jobData }) => {
   `;
   return (
     <>
-      <h2>Title</h2>
       <OverviewWrapper>
         <GraphWrapper>
           <Doughnut
