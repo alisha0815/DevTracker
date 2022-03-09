@@ -28,7 +28,7 @@ const ApplicationChart = ({ jobs }) => {
     <>
       <OverviewChart jobData={jobData} />
 
-      <TotalApplicationChart progressData={progressData} />
+      {/* <TotalApplicationChart progressData={progressData} /> */}
 
       {/* // Progress chart */}
       {/* <div>

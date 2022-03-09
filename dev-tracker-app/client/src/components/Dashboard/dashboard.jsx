@@ -26,7 +26,7 @@ const Dashboard = ({ jobs }) => {
   const [chart, setChart] = useState(false);
 
   const showChart = () => setChart(!chart);
-  const hideChart = () => setChart(false);
+  // const hideChart = () => setChart(false);
 
   const DashboardWrapper = styled.div`
     display: flex;

@@ -24,53 +24,56 @@ const OverviewChart = ({ jobData }) => {
     /* overflow: hidden; */
   `;
   return (
-    <OverviewWrapper>
-      <GraphWrapper>
-        <Doughnut
-          height={200}
-          width={200}
-          options={{
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              title: {
-                display: true,
-                text: "Job Application Overview",
-                padding: {
-                  top: 10,
-                  bottom: 30,
-                },
-                font: {
-                  size: 28,
-                },
-              },
-              legend: {
-                labels: {
+    <>
+      <h2>Title</h2>
+      <OverviewWrapper>
+        <GraphWrapper>
+          <Doughnut
+            height={200}
+            width={200}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                title: {
+                  display: true,
+                  text: "Job Application Overview",
+                  padding: {
+                    top: 10,
+                    bottom: 30,
+                  },
                   font: {
-                    size: 20,
+                    size: 28,
+                  },
+                },
+                legend: {
+                  labels: {
+                    font: {
+                      size: 20,
+                    },
                   },
                 },
               },
-            },
-          }}
-          data={{
-            labels: [
-              "Phone Interview",
-              "Technical-Interview",
-              "Declined",
-              "Accepted",
-            ],
-            datasets: [
-              {
-                label: "Job application",
-                data: jobData,
-                backgroundColor: ["#FEDBDD", "#FFF1E3", "#DCF5E8", "#B9EAEA"],
-              },
-            ],
-          }}
-        />
-      </GraphWrapper>
-    </OverviewWrapper>
+            }}
+            data={{
+              labels: [
+                "Phone Interview",
+                "Technical-Interview",
+                "Declined",
+                "Accepted",
+              ],
+              datasets: [
+                {
+                  label: "Job application",
+                  data: jobData,
+                  backgroundColor: ["#FEDBDD", "#FFF1E3", "#DCF5E8", "#B9EAEA"],
+                },
+              ],
+            }}
+          />
+        </GraphWrapper>
+      </OverviewWrapper>
+    </>
   );
 };
 

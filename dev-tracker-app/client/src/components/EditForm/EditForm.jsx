@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { jobService } from "../../service/jobService";
 import COLORS from "../../styles/styled.constants";
@@ -10,6 +10,7 @@ const EditForm = ({ jobs, triggerUpdate }) => {
   const [updatedJob, setUpdatedJob] = useState(
     jobs.find((job) => job.id === id)
   );
+  let navigate = useNavigate();
 
   const editHandler = async (e) => {
     e.preventDefault();
@@ -37,6 +38,7 @@ const EditForm = ({ jobs, triggerUpdate }) => {
       .then((data) => {
         triggerUpdate(Math.random());
         console.log(data);
+        navigate("/list");
       })
       .catch(console.error);
   };
