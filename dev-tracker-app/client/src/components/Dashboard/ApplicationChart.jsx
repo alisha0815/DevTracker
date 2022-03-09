@@ -1,9 +1,9 @@
 import React from "react";
 import "chart.js/auto";
-import { Doughnut } from "react-chartjs-2";
+// import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
 import OverviewChart from "./OverviewChart";
-import TotalApplicationChart from "./TotalApplicationChart";
+// import TotalApplicationChart from "./TotalApplicationChart";
 Chart.register(ArcElement);
 
 const ApplicationChart = ({ jobs }) => {
@@ -27,6 +27,8 @@ const ApplicationChart = ({ jobs }) => {
   return (
     <>
       <OverviewChart jobData={jobData} />
+
+      {/* data rendering didnt work properly so should be done later */}
 
       {/* <TotalApplicationChart progressData={progressData} /> */}
 
