@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // const { DB_MONGO_HOST } = process.env;
-const DB_MONGO_HOST = 'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false'
+const DB_MONGO_HOST = process.env.DB_MONGO_HOST;
 
 export async function connectDB() {
   return new Mongoose.connect(DB_MONGO_HOST);

@@ -1,4 +1,4 @@
-const baseURL = `http://localhost:3040`;
+const baseURL = `http://localhost:3000`;
 
 export const jobService = {
   async getAllJobs() {
