@@ -27,6 +27,8 @@ export async function createJob(req, res) {
   }
 }
 
+
+// THIS IS THE CODE MODIFICATIOPN
 // delete
 export async function removeJob(req, res) {
   const id = req.params.id;
