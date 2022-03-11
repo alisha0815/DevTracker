@@ -1,19 +1,19 @@
 import express from "express";
-import * as jobsController from "../controllers/job.js";
-// import { isAuth } from "../middleware/auth.js";
+import { createJob, retrieveJobs, removeJob, updateJob }  from "../controllers/job.js";
+
 
 const jobsRouter = express.Router();
 
 // GET
-jobsRouter.get("/list", jobsController.retrieveJobs);
+jobsRouter.get("/list", retrieveJobs);
 
 // POST
-jobsRouter.post("/add", jobsController.createJob);
+jobsRouter.post("/add", createJob);
 
 // DELETE
-jobsRouter.delete("/list/:id", jobsController.removeJob);
+jobsRouter.delete("/list/:jobId", removeJob );
 
 // PUT
-jobsRouter.put("/edit/:id", jobsController.updateJop);
+jobsRouter.put("/edit/:jobId", updateJob);
 
 export default jobsRouter;

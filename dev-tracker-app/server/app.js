@@ -13,26 +13,15 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan("tiny"));
 
-app.get("/", (req, res) => {
-  res.send("hei testing");
-});
 
-app.use("/", jobsRouter);
+app.use(jobsRouter);
 
-app.use((req, res) => {
-  res.sendStatus(404);
-});
-
-app.use((error, req, res) => {
-  console.error(error);
-  res.sendStatus(500);
-});
 
 connectDB()
   .then(() => {
-    console.log("init!");
+    console.log("Connected to the database!");
     app.listen(PORT, () =>
-      console.log(`server running on http://localhost${PORT}`)
+      console.log(`Server running on http://localhost${PORT}`)
     );
   })
   .catch(console.error);
