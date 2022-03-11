@@ -1,28 +1,26 @@
-import * as jobRepository from "../model/jobs.js";
-import { Job } from '../model/jobs'
+import { Job } from '../model/jobs.js'
 
 //get
 export async function retrieveJobs(req, res) {
-try {
-  const jobs = await Job.getAll();
-  res.status(200).json(jobs);
-} catch (error) {
-  res.status(404).send(error, {message: 'Sorry, nothing found'})
-}
-
-
+  try {
+    console.log("Inside retrieve jobs")
+    const jobs = await JobRepository.getAll();
+    res.status(200).json(jobs);
+  } catch (error) {
+    res.status(404).send( {error, message: 'Sorry, nothing found'})
+  }
 }
 
 // post
 
-export async function createJob(req, res) {
+ export const createJob = async function (req, res) {
   try {
     const newJob = await Job.create(req.body)
-    console.log("created", company);
-    res.status(201).json(newJob);
+    console.log(newJob);
+    res.status(200).send(newJob)
   } catch (error) {
     if (!req.body.company || !req.body.position || !req.body.status) {
-      res.status(404).send(error, { message: "input field is missing" });
+      res.status(404).send({ error, message: "input field is missing" });
     }
   }
 }
@@ -35,18 +33,19 @@ export async function removeJob(req, res) {
     await Job.findAndDeleteById({_id : id});
     res.sendStatus(204);
   } catch (error) {
-    res.status(500).send(error, {message: "Sorry, post can't be deleted"})
+    res.status(500).send({error, message: "Sorry, post can't be deleted"})
   }
 }
 
 //update
-export async function updateJop(req, res) {
+const updateJop = async function (req, res) {
   try {
     const { jobId }  = req.params.id;
     const updated = await jobRepository.findAndUpdateById({_id : jobId}, req.body);
     console.log("updated", updated);
     res.status(200).send(updated);
   } catch (error) {
-    res.status(500).send(error, {message: "Sorry, post can't be updated"}); 
+    res.status(500).send({error, message: "Sorry, post can't be updated"}); 
   }
 }
+

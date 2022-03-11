@@ -35,56 +35,56 @@ const JobSchema = new Mongoose.Schema(
 );
 
 // create job model
-const Job = Mongoose.model("Job", JobSchema);
+export const Job = Mongoose.model("Job", JobSchema);
 
-// get by Id
-export async function getById(id) {
-  return Job.findById(id);
-}
+// // get by Id
+// export async function getById(id) {
+//   return Job.findById(id);
+// }
 
-// get
-export async function getAllJobs() {
-  return Job.find();
-}
+// // get
+// export async function getAllJobs() {
+//   return Job.find();
+// }
 
-// post
-export async function postJob(
-  company,
-  position,
-  status,
-  date_applied,
-  date_interview
-) {
-  return new Job({
-    company,
-    position,
-    status,
-    date_applied,
-    date_interview,
-  }).save();
-}
+// // post
+// export async function postJob(
+//   company,
+//   position,
+//   status,
+//   date_applied,
+//   date_interview
+// ) {
+//   return new Job({
+//     company,
+//     position,
+//     status,
+//     date_applied,
+//     date_interview,
+//   }).save();
+// }
 
-// delete
-export async function deleteJob(id) {
-  return Job.findByIdAndDelete(id);
-}
+// // delete
+// export async function deleteJob(id) {
+//   return Job.findByIdAndDelete(id);
+// }
 
-// update
-export async function update(
-  id,
-  company,
-  position,
-  status,
-  date_applied,
-  date_interview
-) {
-  return await Job.findByIdAndUpdate(
-    id,
-    { company, position, status, date_applied, date_interview },
-    { new: true }
-  );
-}
+// // update
+// export async function update(
+//   id,
+//   company,
+//   position,
+//   status,
+//   date_applied,
+//   date_interview
+// ) {
+//   return await Job.findByIdAndUpdate(
+//     id,
+//     { company, position, status, date_applied, date_interview },
+//     { new: true }
+//   );
+// }
 
-useVirtualId(JobSchema);
+// useVirtualId(JobSchema);
 
-export default Job;
+// export default Job;
