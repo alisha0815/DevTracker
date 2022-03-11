@@ -5,6 +5,41 @@ import { jobService } from "../../service/jobService";
 import COLORS from "../../styles/styled.constants";
 import { Link } from "react-router-dom";
 
+const UpdateForm = styled.div`
+box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
+border-radius: 20px;
+padding-top: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+width: 50%;
+max-width: 50%;
+margin: 0 auto;
+h3 {
+  text-align: center;
+  color: ${COLORS.button};
+  font-weight: bolder;
+}
+`;
+
+const EditButton = styled.div`
+text-align: center;
+.add--btn,
+.cancel--btn {
+  width: 130px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+}
+.cancel--btn {
+  background-color: white;
+  color: ${COLORS.button};
+  border: 1px solid ${COLORS.button};
+}
+`;
+
+
 const EditForm = ({ jobs, triggerUpdate }) => {
   const { id } = useParams();
   const [updatedJob, setUpdatedJob] = useState(
@@ -43,39 +78,7 @@ const EditForm = ({ jobs, triggerUpdate }) => {
       .catch(console.error);
   };
 
-  const UpdateForm = styled.div`
-    box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
-    border-radius: 20px;
-    padding-top: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 50%;
-    max-width: 50%;
-    margin: 0 auto;
-    h3 {
-      text-align: center;
-      color: ${COLORS.button};
-      font-weight: bolder;
-    }
-  `;
-
-  const EditButton = styled.div`
-    text-align: center;
-    .add--btn,
-    .cancel--btn {
-      width: 130px;
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .cancel--btn {
-      background-color: white;
-      color: ${COLORS.button};
-      border: 1px solid ${COLORS.button};
-    }
-  `;
+ 
 
   return (
     <UpdateForm>

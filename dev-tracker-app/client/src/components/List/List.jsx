@@ -17,6 +17,122 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SubTitle } from "chart.js";
 
+const ListWrapper = styled.div`
+width: 100%;
+height: 100vh;
+`;
+
+const ListButton = styled.div`
+width: 100%;
+height: 20vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+font-size: 1.2em;
+`;
+
+const PositionButton = styled.div`
+flex: 1;
+display: flex;
+justify-content: center;
+width: 100%;
+`;
+
+const StatusButton = styled.div`
+flex: 1;
+display: flex;
+justify-content: center;
+width: 100%;
+`;
+
+const TagButton = styled.button`
+border: 1px solid ${COLORS.button};
+margin: 0.5em;
+padding: 0.3em;
+width: 150px;
+height: 80px;
+border-radius: 30px;
+background-color: white;
+color: ${COLORS.button};
+:hover {
+  background-color: ${COLORS.button};
+  color: white;
+}
+`;
+
+const Icon = styled.div`
+font-size: 1.5em;
+/* display: inline-block;
+text-align: center;
+margin: 0 auto; */
+`;
+
+const CompanyList = styled.div`
+box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
+border-radius: 15px;
+width: 100%;
+display: flex;
+justify-content: center;
+.company--title {
+  font-size: 1.8em;
+  text-align: center;
+  padding: 1.2rem;
+} 
+  h2 {
+    padding-left: 1.2rem;
+    display: inline-block;
+  }
+}
+`;
+
+const CompanyWrapper = styled.div`
+width: 100%;
+font-size: 1.2em;
+`;
+
+const CompanyContainer = styled.div`
+align-items: start;
+display: grid;
+grid-gap: 36px;
+grid-template-columns: repeat(auto-fit, 500px);
+height: 700px;
+justify-content: center;
+padding: 2rem;
+.sub--icon {
+  color: ${COLORS.button};
+}
+`;
+
+const CardWrapper = styled.div`
+padding: 3rem;
+.card--section {
+  padding-left: 1.2rem;
+}
+.update {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1rem;
+  padding-right: 2rem;
+  padding-top: 1.4rem;
+  font-style: italic;
+}
+`;
+
+const CompanySubTitle = styled.div`
+display: inline-block;
+padding-left: 1.5rem;
+span {
+  padding-left: 1rem;
+}
+`;
+
+const CompanyCardButton = styled.div`
+padding-top: 1rem;
+padding-bottom: 1.4rem;
+display: flex;
+justify-content: space-evenly;
+`;
+
 const List = ({ jobs, setJobs }) => {
   let navigate = useNavigate();
   const [filteredJobs, setFilteredJobs] = useState(jobs);
@@ -41,121 +157,7 @@ const List = ({ jobs, setJobs }) => {
     setFilteredJobs(jobs.filter((job) => job.status === status));
   };
 
-  const ListWrapper = styled.div`
-    width: 100%;
-    height: 100vh;
-  `;
 
-  const ListButton = styled.div`
-    width: 100%;
-    height: 20vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.2em;
-  `;
-
-  const PositionButton = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  `;
-
-  const StatusButton = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  `;
-
-  const TagButton = styled.button`
-    border: 1px solid ${COLORS.button};
-    margin: 0.5em;
-    padding: 0.3em;
-    width: 150px;
-    height: 80px;
-    border-radius: 30px;
-    background-color: white;
-    color: ${COLORS.button};
-    :hover {
-      background-color: ${COLORS.button};
-      color: white;
-    }
-  `;
-
-  const Icon = styled.div`
-    font-size: 1.5em;
-    /* display: inline-block;
-    text-align: center;
-    margin: 0 auto; */
-  `;
-
-  const CompanyList = styled.div`
-    box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
-    border-radius: 15px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    .company--title {
-      font-size: 1.8em;
-      text-align: center;
-      padding: 1.2rem;
-    } 
-      h2 {
-        padding-left: 1.2rem;
-        display: inline-block;
-      }
-    }
-  `;
-
-  const CompanyWrapper = styled.div`
-    width: 100%;
-    font-size: 1.2em;
-  `;
-
-  const CompanyContainer = styled.div`
-    align-items: start;
-    display: grid;
-    grid-gap: 36px;
-    grid-template-columns: repeat(auto-fit, 500px);
-    height: 700px;
-    justify-content: center;
-    padding: 2rem;
-    .sub--icon {
-      color: ${COLORS.button};
-    }
-  `;
-
-  const CardWrapper = styled.div`
-    padding: 3rem;
-    .card--section {
-      padding-left: 1.2rem;
-    }
-    .update {
-      display: flex;
-      justify-content: flex-end;
-      font-size: 1rem;
-      padding-right: 2rem;
-      padding-top: 1.4rem;
-      font-style: italic;
-    }
-  `;
-
-  const CompanySubTitle = styled.div`
-    display: inline-block;
-    padding-left: 1.5rem;
-    span {
-      padding-left: 1rem;
-    }
-  `;
-
-  const CompanyCardButton = styled.div`
-    padding-top: 1rem;
-    padding-bottom: 1.4rem;
-    display: flex;
-    justify-content: space-evenly;
-  `;
   return (
     <>
       <ListWrapper>

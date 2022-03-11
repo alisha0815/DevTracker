@@ -2,10 +2,12 @@ import React from "react";
 import Landing from "./Landing";
 import styled from "styled-components";
 
+const HomeWrapper = styled.div`
+width: 100%;
+`;
+
 const Home = () => {
-  const HomeWrapper = styled.div`
-    width: 100%;
-  `;
+ 
   return (
     <HomeWrapper>
       <Landing />
