@@ -5,7 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "nodemon app"
   },
   "keywords": [],
@@ -16,11 +16,17 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-validator": "^6.14.0",
+    "jest": "^27.5.1",
     "mongoose": "^6.2.4",
     "morgan": "^1.10.0",
     "supertest": "^6.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+   "jest": {
+     "testEnvironment" : "jest-environment-node", 
+     "transform": {}
+   }
+  
 }
