@@ -1,51 +1,51 @@
 import { Job } from '../model/jobs.js'
 
-//get
-export async function retrieveJobs(req, res) {
+//Find all jobs
+export const retrieveJobs = async ( _, res) => {
   try {
     console.log("Inside retrieve jobs")
-    const jobs = await JobRepository.getAll();
-    res.status(200).json(jobs);
+    const jobs = await Job.find();
+    res.status(200).send(jobs);
   } catch (error) {
-    res.status(404).send( {error, message: 'Sorry, nothing found'})
+    res.status(404).send({error, message: 'Sorry, nothing found'})
   }
 }
 
-// post
+//Post a new job
 
- export const createJob = async function (req, res) {
+ export const createJob = async (req, res) => {
   try {
     const newJob = await Job.create(req.body)
     console.log(newJob);
     res.status(200).send(newJob)
   } catch (error) {
     if (!req.body.company || !req.body.position || !req.body.status) {
-      res.status(404).send({ error, message: "input field is missing" });
+      res.status(404).send({ error, message: "Input field is missing" });
     }
   }
 }
 
-// THIS IS THE CODE MODIFICATIOPN
-// delete
-export async function removeJob(req, res) {
+// Delete job post
+export const removeJob = async  (req, res) => {
   try {
-    const { id } = req.params.id;
-    await Job.findAndDeleteById({_id : id});
-    res.sendStatus(204);
+    const { jobId } =  req.params;
+    console.log(jobId, "thi is the JOb id")
+    const deletedJob = await Job.findByIdAndDelete({_id : jobId});
+    res.status(204).send({deletedJob, message: "Job has been deleted"})
   } catch (error) {
-    res.status(500).send({error, message: "Sorry, post can't be deleted"})
+    res.status(500).send({error, message: "Sorry, Job post can't be deleted"})
   }
 }
 
-//update
-const updateJop = async function (req, res) {
+//Update Job information
+export const updateJob =  async (req, res)  => {
   try {
-    const { jobId }  = req.params.id;
-    const updated = await jobRepository.findAndUpdateById({_id : jobId}, req.body);
+    const { jobId } = req.params;
+    const updated = await Job.findOneAndUpdate({_id : jobId}, req.body);
     console.log("updated", updated);
     res.status(200).send(updated);
   } catch (error) {
-    res.status(500).send({error, message: "Sorry, post can't be updated"}); 
+    res.status(500).send({error, message: "Sorry, Job post can't be updated"}); 
   }
 }
 
