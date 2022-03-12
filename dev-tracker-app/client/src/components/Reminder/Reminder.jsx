@@ -22,6 +22,26 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
+const ReminderWrapper = styled.div`
+text-align: center;
+margin: 0;
+h2 {
+  font-size: 1.7em;
+  padding-top: 2rem;
+}
+span {
+  padding-left: 1rem;
+}
+`;
+
+const CalendarWrapper = styled.div`
+margin: 0 auto;
+width: 70%;
+height: 100vh;
+`;
+
+
+
 const Reminder = ({ jobs }) => {
   //   const [event, setEvent] = useState({ title: "", start: "", end: "" });
   const [events, setEvents] = useState([
@@ -35,24 +55,7 @@ const Reminder = ({ jobs }) => {
     end: moment(event["date_interview"]).toDate(),
   }));
 
-  const ReminderWrapper = styled.div`
-    text-align: center;
-    margin: 0;
-    h2 {
-      font-size: 1.7em;
-      padding-top: 2rem;
-    }
-    span {
-      padding-left: 1rem;
-    }
-  `;
-
-  const CalendarWrapper = styled.div`
-    margin: 0 auto;
-    width: 70%;
-    height: 100vh;
-  `;
-
+ 
   console.log(interviews);
 
   return (

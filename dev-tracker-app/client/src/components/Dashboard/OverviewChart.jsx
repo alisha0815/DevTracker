@@ -5,24 +5,27 @@ import { Chart, ArcElement } from "chart.js";
 import styled from "styled-components";
 Chart.register(ArcElement);
 
-const OverviewChart = ({ jobData }) => {
-  const OverviewWrapper = styled.div`
-    position: relative;
-  `;
-  const GraphWrapper = styled.div`
-    width: 60%;
-    text-align: center;
-    height: 70vh;
-    box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
-    border-radius: 20px;
-    padding: 2rem;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: white;
+const OverviewWrapper = styled.div`
+position: relative;
+`;
+const GraphWrapper = styled.div`
+width: 60%;
+text-align: center;
+height: 70vh;
+box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
+border-radius: 20px;
+padding: 2rem;
+position: absolute;
+left: 50%;
+transform: translateX(-50%);
+background-color: white;
 
-    /* overflow: hidden; */
-  `;
+/* overflow: hidden; */
+`;
+
+
+const OverviewChart = ({ jobData }) => {
+
   return (
     <>
       <OverviewWrapper>
