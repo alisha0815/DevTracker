@@ -7,7 +7,7 @@ width: 100%;
 `;
 
 const Home = () => {
- 
+
   return (
     <HomeWrapper>
       <Landing />
