@@ -13,7 +13,6 @@ const MockedAdd = () => {
   )
 }
 
-
 describe('form validation', () => {
   test('on initial load. the Add button is disabled', () => {
     render(<MockedAdd/>)
