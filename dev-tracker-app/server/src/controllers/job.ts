@@ -1,4 +1,4 @@
-import { Job } from '../model/jobs.js';
+import { Job } from '../model/jobs';
 import { RequestHandler } from 'express';
 
 //Find all jobs
