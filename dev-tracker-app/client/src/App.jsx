@@ -43,8 +43,7 @@ const App = () => {
               <Route
                 exact
                 path='/list'
-                element={<List jobs={jobs} setJobs={setJobs} 
-                />}
+                element={<List jobs={jobs} setJobs={setJobs} />}
               />
               <Route
                 exact
