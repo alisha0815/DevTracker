@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { SidebarData } from "./SideBarData";
@@ -7,6 +7,7 @@ import { SidebarData } from "./SideBarData";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import COLORS from "../../styles/styled.constants";
+import Login from "../Login/Login"
 
 const NavbarWrapper = styled.div`
 /* display: flex; */
@@ -105,7 +106,19 @@ const Navbar = () => {
   const showSidebar = () => setSidebar(!sidebar);
   const hideSidebar = () => setSidebar(false);
 
+
+  const [loggedIn, setLoggedIn] = useState(null)
+  
+  useEffect(() =>{
+    localStorage.getItem('uid') ? setLoggedIn(true) : setLoggedIn(false)
+  },[loggedIn])
+
+  const userPhoto = localStorage.getItem('userPhoto')
+  const userName = localStorage.getItem('userName')
+  const email = localStorage.getItem('email')
+
   return (
+
     <NavbarWrapper>
       <Link to="#" className="menu-bars">
         <FaIcons.FaBars onClick={showSidebar} />
@@ -114,43 +127,43 @@ const Navbar = () => {
         <h2>DevT</h2>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+       <div className="logo">
+        <h2>DevT</h2>
+        {console.log(localStorage.getItem('uid'), 'USER ID STORAGE')}
+      </div>
+      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
             <Link to="#" className="close-bars" onClick={showSidebar}>
               <AiIcons.AiOutlineClose />
             </Link>
           </li>
-          {SidebarData.map((item, index) => {
+        { loggedIn ? (
+          <div>
+          <img src={userPhoto} alt="user" style={{borderRadius: '50px'}}></img> 
+          <p>{userName}</p>
+          <p>{email}</p>
+          </div>
+        ): (<div></div>)}
+          <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Login>
+          {loggedIn ? ( 
+            
+            SidebarData.map((item, index) => {
             return (
+
               <li key={index} className={item.cName}>
+              
                 <Link to={item.path} onClick={() => hideSidebar()}>
                   {item.icon}
                   <span>{item.title}</span>
                 </Link>
               </li>
             );
-          })}
+          })) : (<p>Please log in to see the information of your Dashboard</p>)} 
         </ul>
       </nav>
+      </nav>
     </NavbarWrapper>
-    // <NavWrapper>
-    //   <NavbarContainer>
-    //     <Logo>
-    //       <Link to="/">DEV T</Link>
-    //     </Logo>
-    //     <Menu>
-    //       <Item>
-    //         <Link to="/dashboard">Dashboard</Link>
-    //       </Item>
-    //       <Item>
-    //         <Link to="/List">Job List</Link>
-    //       </Item>
-    //       <Item>
-    //         <Link to="/add">Add new job</Link>
-    //       </Item>
-    //     </Menu>
-    //   </NavbarContainer>
-    // </NavWrapper>
   );
 };
 
