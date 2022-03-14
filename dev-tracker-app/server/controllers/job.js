@@ -3,7 +3,6 @@ import { Job } from '../model/jobs.js'
 //Find all jobs
 export const retrieveJobs = async ( _, res) => {
   try {
-    console.log("Inside retrieve jobs")
     const jobs = await Job.find();
     res.status(200).send(jobs);
   } catch (error) {
@@ -25,6 +24,18 @@ export const retrieveJobs = async ( _, res) => {
   }
 }
 
+//Update Job information
+export const updateJob =  async (req, res)  => {
+  try {
+    const { jobId } = req.params;
+    const updated = await Job.findOneAndUpdate({_id : jobId}, req.body);
+    console.log("updated", updated);
+    res.status(200).send(updated);
+  } catch (error) {
+    res.status(500).send({error, message: "Sorry, Job post can't be updated"}); 
+  }
+}
+
 // Delete job post
 export const removeJob = async  (req, res) => {
   try {
@@ -37,15 +48,4 @@ export const removeJob = async  (req, res) => {
   }
 }
 
-//Update Job information
-export const updateJob =  async (req, res)  => {
-  try {
-    const { jobId } = req.params;
-    const updated = await Job.findOneAndUpdate({_id : jobId}, req.body);
-    console.log("updated", updated);
-    res.status(200).send(updated);
-  } catch (error) {
-    res.status(500).send({error, message: "Sorry, Job post can't be updated"}); 
-  }
-}
 
