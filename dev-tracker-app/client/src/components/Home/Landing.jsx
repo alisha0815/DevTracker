@@ -9,7 +9,7 @@ height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
-background-color: #333333;
+background-color: #606060;
 .left {
   flex: 2;
   margin: auto;

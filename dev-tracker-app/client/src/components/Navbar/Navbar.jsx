@@ -17,7 +17,7 @@ display: inline-block;
 width: 100%;
 justify-content: start;
 align-items: center;
-background-color: #333333; 
+background-color: #606060; 
 .logo {
   position: absolute;
   right: 30px;
