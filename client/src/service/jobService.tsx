@@ -3,17 +3,17 @@ import { Job } from '../interfaces';
 const baseURL = `http://localhost:3000`;
 
 const jobService = {
-  async getAllJobs(id : string) {
+  async getAllJobs(id: string) {
     const response = await fetch(`${baseURL}/list`, {
       method: 'POST',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({id}) 
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify({ id })
     });
     const data = await response.json();
     if (response.status !== 200) {
       throw new Error('Error fetching data');
     }
-    return data; 
+    return data;
   },
 
   async createJob(job: Job) {
@@ -23,7 +23,7 @@ const jobService = {
       body: JSON.stringify(job),
     });
     const data = await response.json();
-    if (response.status !== 201) {
+    if (response.status >= 400) {
       throw new Error(data.message);
     }
     return data;

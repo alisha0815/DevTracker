@@ -144,6 +144,8 @@ const Add = ({ jobs, setJobs }: { jobs: Job[], setJobs: any }) => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log('SUBMIT HANDLER');
+
 
     const { company, position, status, date_applied, date_interview } =
       e.target as typeof e.target & {
@@ -163,6 +165,7 @@ const Add = ({ jobs, setJobs }: { jobs: Job[], setJobs: any }) => {
       date_interview: date_interview.value,
     });
     setJobs([newJob, ...jobs]);
+    console.log('!!!!WDADreaching the navigate button');
 
     navigate('/list');
   };
