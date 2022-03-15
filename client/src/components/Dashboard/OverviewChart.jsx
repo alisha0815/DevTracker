@@ -60,9 +60,11 @@ const OverviewChart = ({ jobData }) => {
             data={{
               labels: [
                 "Phone Interview",
-                "Technical-Interview",
+                "Technical Interview",
                 "Declined",
                 "Accepted",
+                "Interested", 
+                "Applied"
               ],
               datasets: [
                 {

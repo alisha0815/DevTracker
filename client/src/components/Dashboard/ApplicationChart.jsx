@@ -7,6 +7,7 @@ import OverviewChart from "./OverviewChart";
 Chart.register(ArcElement);
 
 const ApplicationChart = ({ jobs }) => {
+  console.log(jobs, 'Jobs from App Chart')
   const filteredJobs = (status) =>
     jobs.filter((job) => job.status === status).length;
   const status = [
@@ -14,6 +15,8 @@ const ApplicationChart = ({ jobs }) => {
     "technical interview",
     "declined",
     "accepted",
+    "interested", 
+    "applied"
   ];
   const jobData = status.map((el) => filteredJobs(el));
   console.log(jobData);
