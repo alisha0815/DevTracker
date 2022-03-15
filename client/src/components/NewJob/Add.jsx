@@ -133,14 +133,13 @@ const Add = ({ jobs, setJobs }) => {
     e.preventDefault();
     const { company, position, status, date_applied, date_interview } =
       e.target;
-
-    const newJob = await jobService.createJob(
-      company.value,
-      position.value,
-      status.value,
-      date_applied.value,
-      date_interview.value
-    );
+    const newJob = await jobService.createJob({
+      company: company.value,
+      position: position.value,
+      status: status.value,
+      date_applied: date_applied.value,
+      date_interview: date_interview.value,
+    });
     setJobs([newJob, ...jobs]);
 
     navigate('/list');
