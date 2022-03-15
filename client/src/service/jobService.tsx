@@ -3,19 +3,20 @@ import { Job } from '../interfaces';
 const baseURL = `http://localhost:3000`;
 
 const jobService = {
-  async getAllJobs() {
+  async getAllJobs(id : string) {
     const response = await fetch(`${baseURL}/list`, {
-      method: 'GET',
-      headers: { 'Content-type': 'application/json' },
+      method: 'POST',
+      headers: {'Content-type': 'application/json'},
+      body: JSON.stringify({id}) 
     });
+    const data = await response.json();
     if (response.status !== 200) {
       throw new Error('Error fetching data');
     }
-    return response.json();
+    return data; 
   },
 
   async createJob(job: Job) {
-
     const response = await fetch(`${baseURL}/add`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },

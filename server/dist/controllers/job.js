@@ -3,10 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeJob = exports.updateJob = exports.createJob = exports.retrieveJobs = void 0;
 const jobs_1 = require("../model/jobs");
 //Find all jobs
-const retrieveJobs = async (_, res) => {
+const retrieveJobs = async (req, res) => {
     try {
-        const jobs = await jobs_1.Job.find();
-        res.status(200).send(jobs);
+        const { id } = req.body;
+        const jobs = await jobs_1.Job.find({ uid: id });
+        res.send(jobs);
     }
     catch (error) {
         res.status(404).send({ error, message: 'Sorry, nothing found' });

@@ -16,10 +16,12 @@ const App = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [update, triggerUpdate] = useState();
 
-  useEffect(() => {
+const uid = localStorage.getItem('uid')
+  
+useEffect(() => {
     console.log('useEffectAPP');
     jobService
-      .getAllJobs()
+      .getAllJobs(uid)
       .then(jobs => setJobs(jobs))
       .catch(err => console.error(err));
   }, [update]);

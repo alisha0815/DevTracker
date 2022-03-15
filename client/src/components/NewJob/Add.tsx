@@ -102,7 +102,14 @@ const AddButton = styled.div`
   }
 `;
 
+<<<<<<< HEAD:client/src/components/NewJob/Add.tsx
 const Add = ({ jobs, setJobs }: { jobs: Job[], setJobs: any }) => {
+=======
+const Add = ({ jobs, setJobs }) => {
+
+  const userId = localStorage.getItem('uid'); 
+
+>>>>>>> master:client/src/components/NewJob/Add.jsx
   let navigate = useNavigate();
 
   type formStateType = {
@@ -152,6 +159,7 @@ const Add = ({ jobs, setJobs }: { jobs: Job[], setJobs: any }) => {
       };
 
     const newJob = await jobService.createJob({
+      uid: userId, 
       company: company.value,
       position: position.value,
       status: status.value,
