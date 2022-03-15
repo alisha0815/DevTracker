@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/Dashboard/dashboard';
 import EditForm from './components/EditForm/EditForm';
 import Home from './components/Home/Home';
 import List from './components/List/List';
@@ -16,9 +16,9 @@ const App = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [update, triggerUpdate] = useState();
 
-const uid = localStorage.getItem('uid')
-  
-useEffect(() => {
+  const uid = localStorage.getItem('uid');
+
+  useEffect(() => {
     console.log('useEffectAPP');
     jobService
       .getAllJobs(uid)
