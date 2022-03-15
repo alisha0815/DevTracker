@@ -8,7 +8,8 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import COLORS from "../../styles/styled.constants";
 import Login from "../Login/Login"
-
+import logo from "../../assets/DevTrackerLogo.png"
+import textLogo from "../../assets/DevTrackerText.png"
 const NavbarWrapper = styled.div`
 /* display: flex; */
 display: inline-block;
@@ -16,6 +17,7 @@ display: inline-block;
 width: 100%;
 justify-content: start;
 align-items: center;
+background-color: #333333; 
 .logo {
   position: absolute;
   right: 30px;
@@ -124,11 +126,10 @@ const Navbar = () => {
         <FaIcons.FaBars onClick={showSidebar} />
       </Link>
       <div className="logo">
-        <h2>DevT</h2>
+        <img src={textLogo} alt="Text logo Dev Tracker" style={{width:'15rem'}}></img>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
        <div className="logo">
-        <h2>DevT</h2>
         {console.log(localStorage.getItem('uid'), 'USER ID STORAGE')}
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -150,7 +151,6 @@ const Navbar = () => {
             
             SidebarData.map((item, index) => {
             return (
-
               <li key={index} className={item.cName}>
               
                 <Link to={item.path} onClick={() => hideSidebar()}>
@@ -159,7 +159,12 @@ const Navbar = () => {
                 </Link>
               </li>
             );
-          })) : (<p>Please log in to see the information of your Dashboard</p>)} 
+          })) : (
+            <div>
+            <img src={logo} alt="DevTracker Logo" style={{borderRadius: '50px', width:'7rem'}}></img>
+            <p style={{color:'white',width:'7rem'}}>Please log in to see the information of your Dashboard</p>
+            </div>
+            )} 
         </ul>
       </nav>
       </nav>

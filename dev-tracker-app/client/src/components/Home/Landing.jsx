@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import background from "../../img/background--img.jpg";
+import logo from "../../assets/DevTrackerLogoComplete.png"
 
 const LandingWrapper = styled.div`
 width: 100%;
@@ -8,6 +9,7 @@ height: 100vh;
 display: flex;
 justify-content: center;
 align-items: center;
+background-color: #333333;
 .left {
   flex: 2;
   margin: auto;
@@ -17,6 +19,7 @@ align-items: center;
     text-align: center;
   }
   h3 {
+    color: white;
     line-height: 3rem;
     padding-top: 2rem;
     font-weight: 300;
@@ -31,7 +34,6 @@ align-items: center;
   img {
     width: 500px;
     height: 500px;
-
     border-radius: 50%;
   }
 }
@@ -43,7 +45,7 @@ const Landing = () => {
   return (
     <LandingWrapper>
       <div className="left">
-        <h1>Dev tracker</h1>
+        <img src={logo} alt="DevTracker Logo complete" style={{width:'25rem'}}></img>
         <div className="subtitle">
           <h3>
             Make your move. Have your job applications organized. Let's get
