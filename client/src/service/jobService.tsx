@@ -22,17 +22,11 @@ const jobService = {
   },
 
   async createJob(job: Job) {
-    const { company, position, status, date_applied, date_interview } = job;
+
     const response = await fetch(`${baseURL}/add`, {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        company: company,
-        position: position,
-        status: status,
-        date_applied: date_applied,
-        date_interview: date_interview,
-      }),
+      body: JSON.stringify(job),
     });
     const data = await response.json();
     if (response.status !== 201) {
