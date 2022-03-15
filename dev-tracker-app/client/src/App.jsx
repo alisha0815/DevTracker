@@ -10,6 +10,7 @@ import Add from './components/NewJob/Add';
 import Reminder from './components/Reminder/Reminder';
 import { jobService } from './service/jobService';
 import GlobalStyle from './styles/styled.global';
+import Login from './components/Login/Login';
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -39,6 +40,10 @@ const App = () => {
                 exact
                 path='/dashboard'
                 element={<Dashboard jobs={jobs} />}
+              />
+              <Route exact 
+                path='/login' 
+                element={<Login/>} 
               />
               <Route
                 exact
