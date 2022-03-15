@@ -1,12 +1,11 @@
 import jobService from '../../service/jobService';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import COLORS from '../../styles/styled.constants';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
-
 import { useState } from 'react';
+import { Job } from '../../interfaces';
 
 const Form = styled.div`
   box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
@@ -21,7 +20,8 @@ const Form = styled.div`
   max-width: 50%;
   .form--box {
     z-index: 1000 !important;
-  }
+  }import { Job } from '../../interfaces';
+
   .calendar {
     /* display: flex; */
 
@@ -102,17 +102,26 @@ const AddButton = styled.div`
   }
 `;
 
-const Add = ({ jobs, setJobs }) => {
+const Add = ({ jobs, setJobs }: { jobs: Job[], setJobs: any }) => {
   let navigate = useNavigate();
-  const [formState, setFormState] = useState({
+
+  type formStateType = {
+    [key: string]: string
+  }
+
+  const [formState, setFormState] = useState<formStateType>({
     company: '',
     position: '',
     status: '',
     date_applied: '',
     date_interview: '',
   });
-  const changeHandler = e => {
-    const target = e.target;
+
+  const changeHandler = (e: React.FormEvent<HTMLElement>) => {
+    const target = e.target as typeof e.target & {
+      name: string,
+      value: string
+    };
     setFormState({ ...formState, [target.name]: target.value });
   };
 
@@ -124,15 +133,24 @@ const Add = ({ jobs, setJobs }) => {
       formState.date_applied &&
       formState.date_interview
     ) {
-      return '';
+      return false;
     }
     return true;
   };
 
-  const submitHandler = async e => {
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const { company, position, status, date_applied, date_interview } =
-      e.target;
+      e.target as typeof e.target & {
+        company: { value: string },
+        position: { value: string },
+        status: { value: string },
+        date_applied: { value: string },
+        date_interview: { value: string },
+      };
+
     const newJob = await jobService.createJob({
       company: company.value,
       position: position.value,
@@ -145,23 +163,29 @@ const Add = ({ jobs, setJobs }) => {
     navigate('/list');
   };
 
-  const [blurState, setBlurState] = useState({
-    company: '',
-    position: '',
-    status: '',
-    date_applied: '',
-    date_interview: '',
+  type blurStateType = {
+    [key: string]: boolean | string;
+  }
+  type filedNameType = 'company' | 'position' | 'status' | 'date_applied' | 'date_interview';
+
+  const [blurState, setBlurState] = useState<blurStateType>({
+    company: false,
+    position: false,
+    status: false,
+    date_applied: false,
+    date_interview: false,
   });
 
-  const blurHandler = e => {
-    const target = e.target;
+  const blurHandler = (e: React.FocusEvent<HTMLElement>) => {
+    const target = e.target as typeof e.target & { name: string };
+
     setBlurState({ ...blurState, [target.name]: true });
   };
 
-  const isFieldInvalid = fieldName => {
+  const isFieldInvalid = (fieldName: filedNameType) => {
     if (blurState[fieldName] === true && formState[fieldName] === '') {
       return true;
-    }
+    } return "";
   };
 
   return (
@@ -269,7 +293,7 @@ const Add = ({ jobs, setJobs }) => {
                 onChange={changeHandler}
                 onBlur={blurHandler}
                 aria-describedby={
-                  isFieldInvalid('"date_interview')
+                  isFieldInvalid('date_interview')
                     ? '"date_interview-error'
                     : undefined
                 }
