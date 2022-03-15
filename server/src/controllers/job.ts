@@ -1,11 +1,15 @@
 import { Job } from '../model/jobs';
 import { RequestHandler } from 'express';
+import { request } from 'http';
 
 //Find all jobs
-export const retrieveJobs: RequestHandler = async (_, res) => {
+export const retrieveJobs: RequestHandler = async (req, res) => {
+
+
   try {
-    const jobs = await Job.find();
-    res.status(200).send(jobs);
+    const { id } = req.body;
+    const jobs = await Job.find({uid: id});
+    res.send(jobs);
   } catch (error) {
     res.status(404).send({ error, message: 'Sorry, nothing found' });
   }

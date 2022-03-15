@@ -103,6 +103,9 @@ const AddButton = styled.div`
 `;
 
 const Add = ({ jobs, setJobs }) => {
+
+  const userId = localStorage.getItem('uid'); 
+
   let navigate = useNavigate();
   const [formState, setFormState] = useState({
     company: '',
@@ -134,6 +137,7 @@ const Add = ({ jobs, setJobs }) => {
     const { company, position, status, date_applied, date_interview } =
       e.target;
     const newJob = await jobService.createJob({
+      uid: userId, 
       company: company.value,
       position: position.value,
       status: status.value,
