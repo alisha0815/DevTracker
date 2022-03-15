@@ -8,7 +8,7 @@ import List from './components/List/List';
 import Navbar from './components/Navbar/Navbar';
 import Add from './components/NewJob/Add';
 import Reminder from './components/Reminder/Reminder';
-import { jobService } from './service/jobService';
+import jobService from './service/jobService';
 import GlobalStyle from './styles/styled.global';
 import Login from './components/Login/Login';
 
@@ -41,10 +41,7 @@ const App = () => {
                 path='/dashboard'
                 element={<Dashboard jobs={jobs} />}
               />
-              <Route exact 
-                path='/login' 
-                element={<Login/>} 
-              />
+              <Route exact path='/login' element={<Login />} />
               <Route
                 exact
                 path='/list'
