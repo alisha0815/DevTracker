@@ -84,6 +84,8 @@ const jobService = {
   // },
 
   async deleteJob(id: string) {
+    console.log('target url - delete', `${baseURL}/list/${id}`);
+
     return await fetch(`${baseURL}/list/${id}`, {
       method: 'DELETE',
     });

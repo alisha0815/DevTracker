@@ -12,7 +12,7 @@ jobsRouter.get('/list', job_1.retrieveJobs);
 // POST
 jobsRouter.post('/add', job_1.createJob);
 // DELETE
-jobsRouter.delete('/deletelist/:jobId', job_1.removeJob);
+jobsRouter.delete('/list/:jobId', job_1.removeJob);
 // PUT
 jobsRouter.put('/edit/:jobId', job_1.updateJob);
 exports.default = jobsRouter;
