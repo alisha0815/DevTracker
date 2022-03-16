@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { useState } from 'react';
+import react, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import jobService from '../../service/jobService';
@@ -134,8 +134,10 @@ const CompanyCardButton = styled.div`
 `;
 
 const List = ({ jobs, setJobs }) => {
+  console.log('STEP 6 - render all jobs in the list', jobs);
   let navigate = useNavigate();
-  const [filteredJobs, setFilteredJobs] = useState(jobs);
+  const [filter, setFilter] = useState(null);
+
   const editHandler = id => {
     navigate(`/edit/${id}`);
   };
@@ -147,16 +149,6 @@ const List = ({ jobs, setJobs }) => {
     console.log('deleted');
   };
 
-  const filterPositionHandler = e => {
-    const position = e.target.value;
-    setFilteredJobs(jobs.filter(job => job.position === position));
-  };
-
-  const filterStatusHandler = e => {
-    const status = e.target.value;
-    setFilteredJobs(jobs.filter(job => job.status === status));
-  };
-
   return (
     <>
       <ListWrapper>
@@ -165,25 +157,28 @@ const List = ({ jobs, setJobs }) => {
             <TagButton
               className='tag--btn'
               value='all'
-              onClick={() => setFilteredJobs(jobs)}>
+              onClick={() => setFilter(null)}>
               All
             </TagButton>
             <TagButton
               className='tag--btn'
               value='frontend'
-              onClick={e => filterPositionHandler(e)}>
+              onClick={e => setFilter('frontend')}>
+              {' '}
               Frontend
             </TagButton>
             <TagButton
               className='tag--btn'
               value='backend'
-              onClick={e => filterPositionHandler(e)}>
+              onClick={e => setFilter('backend')}>
+              {' '}
               Backend
             </TagButton>
             <TagButton
               className='tag--btn'
               value='fullstack'
-              onClick={e => filterPositionHandler(e)}>
+              onClick={e => setFilter('fullstack')}>
+              {' '}
               Fullstack
             </TagButton>
           </PositionButton>
@@ -191,109 +186,130 @@ const List = ({ jobs, setJobs }) => {
             <TagButton
               className='tag--btn'
               value='applied'
-              onClick={e => filterStatusHandler(e)}>
+              onClick={e => setFilter('pending')}>
+              {' '}
               Pending
             </TagButton>
             <TagButton
               className='tag--btn'
               value='phone-interview'
-              onClick={e => filterStatusHandler(e)}>
+              onClick={e => setFilter('phone interview')}>
+              {' '}
               Phone interview
             </TagButton>
             <TagButton
               className='tag--btn'
               value='technical interview'
-              onClick={e => filterStatusHandler(e)}>
+              onClick={e => setFilter('technical interview')}>
+              {' '}
               Technical Interview
             </TagButton>
-            <TagButton value='declined' onClick={e => filterStatusHandler(e)}>
+            <TagButton value='declined' onClick={e => setFilter('decline')}>
+              {' '}
               Declined
             </TagButton>
             <TagButton
               className='tag--btn'
               value='accepted'
-              onClick={e => filterStatusHandler(e)}>
+              onClick={e => setFilter('accepted')}>
+              {' '}
               Accepted
+            </TagButton>
+            <TagButton
+              className='tag--btn'
+              value='interested'
+              onClick={e => setFilter('interested')}>
+              {' '}
+              Interested
             </TagButton>
           </StatusButton>
         </ListButton>
 
         <CardWrapper>
-          <h1>Company ({filteredJobs.length})</h1>
-          <CompanyContainer>
-            {filteredJobs.map(job => (
-              <CompanyList key={job.id}>
-                <CompanyWrapper>
-                  <div className='card--section'>
-                    <li>
-                      <div className='company--title'>
-                        {' '}
-                        <FontAwesomeIcon
-                          icon={faBuilding}
-                          className='sub--icon'
-                        />
-                        <h2>{job.company}</h2>
-                      </div>
-                    </li>
-                    <li>
-                      <FontAwesomeIcon icon={faCode} className='sub--icon' />
-                      <CompanySubTitle>{job.position}</CompanySubTitle>
-                    </li>
-                    <li>
-                      {' '}
-                      <FontAwesomeIcon
-                        icon={faClipboard}
-                        className='sub--icon'
-                      />
-                      <CompanySubTitle> {job.status}</CompanySubTitle>
-                    </li>
-
-                    {job.date_applied && (
+          {jobs
+            .filter(job => {
+              if (filter === null) {
+                return job;
+              }
+              return job.position === filter || job.status === filter;
+            })
+            .map(job => {
+              console.log('INSIDE THE COMPONENT', job);
+              return (
+                <CompanyList key={job._id}>
+                  <CompanyWrapper>
+                    <div className='card--section'>
                       <li>
-                        <FontAwesomeIcon
-                          icon={faCalendarDays}
-                          className='sub--icon'
-                        />
-                        <CompanySubTitle>Applied :</CompanySubTitle>
-                        <span>{moment(job.date_applied).format('ll')}</span>
-                      </li>
-                    )}
-
-                    {job.date_interview && (
-                      <>
-                        <h4>
+                        <div className='company--title'>
+                          {' '}
                           <FontAwesomeIcon
-                            icon={faBell}
+                            icon={faBuilding}
                             className='sub--icon'
                           />
-                          <span>
-                            {moment(job.date_interview).format('llll')}
-                          </span>
-                        </h4>
-                      </>
-                    )}
-                  </div>
-                  <li className='update'>
-                    <FontAwesomeIcon icon={faRepeat} />
-                    Last update {moment(job.updatedAt).startOf('day').fromNow()}
-                  </li>
+                          <h2>{job.company}</h2>
+                        </div>
+                      </li>
+                      <li>
+                        <FontAwesomeIcon icon={faCode} className='sub--icon' />
+                        <CompanySubTitle>{job.position}</CompanySubTitle>
+                      </li>
+                      <li>
+                        {' '}
+                        <FontAwesomeIcon
+                          icon={faClipboard}
+                          className='sub--icon'
+                        />
+                        <CompanySubTitle> {job.status}</CompanySubTitle>
+                      </li>
 
-                  <CompanyCardButton>
-                    <Icon>
-                      <button onClick={() => editHandler(job.id)}>
-                        <FontAwesomeIcon icon={faPenToSquare} />
-                      </button>
-                    </Icon>
-                    <Icon>
-                      <button onClick={() => deleteHandler(job.id)}>
-                        <FontAwesomeIcon icon={faTrashCan} />
-                      </button>
-                    </Icon>
-                  </CompanyCardButton>
-                </CompanyWrapper>
-              </CompanyList>
-            ))}
-          </CompanyContainer>
+                      {job.date_applied && (
+                        <li>
+                          <FontAwesomeIcon
+                            icon={faCalendarDays}
+                            className='sub--icon'
+                          />
+                          <CompanySubTitle>Applied :</CompanySubTitle>
+                          <span>{moment(job.date_applied).format('ll')}</span>
+                        </li>
+                      )}
+
+                      {job.date_interview && (
+                        <>
+                          <h4>
+                            <FontAwesomeIcon
+                              icon={faBell}
+                              className='sub--icon'
+                            />
+                            <span>
+                              {moment(job.date_interview).format('llll')}
+                            </span>
+                          </h4>
+                        </>
+                      )}
+                    </div>
+                    <li className='update'>
+                      <FontAwesomeIcon icon={faRepeat} />
+                      Last update{' '}
+                      {moment(job.updatedAt).startOf('day').fromNow()}
+                    </li>
+
+                    <CompanyCardButton>
+                      <Icon>
+                        <button onClick={() => editHandler(job._id)}>
+                          <FontAwesomeIcon icon={faPenToSquare} />
+                        </button>
+                      </Icon>
+                      <Icon>
+                        <button onClick={() => deleteHandler(job._id)}>
+                          <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
+                      </Icon>
+                    </CompanyCardButton>
+                  </CompanyWrapper>
+                </CompanyList>
+              );
+            })}
+          {/* </CompanyContainer> */}
         </CardWrapper>
       </ListWrapper>
     </>

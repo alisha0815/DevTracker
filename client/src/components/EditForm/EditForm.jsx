@@ -41,35 +41,30 @@ const EditButton = styled.div`
 
 const EditForm = ({ jobs, triggerUpdate }) => {
   const { id } = useParams();
-  const [updatedJob, setUpdatedJob] = useState(jobs.find(job => job.id === id));
+  const [selectedJob, setSelectedJob] = useState(
+    jobs.find(job => job._id === id)
+  );
   let navigate = useNavigate();
 
   const editHandler = async e => {
     e.preventDefault();
-    const { company, position, status, date_applied, date_interview } =
-      e.target;
-    setUpdatedJob({
-      id: id,
-      company: company.value,
-      position: position.value,
-      status: status.value,
-      date_applied: date_applied.value,
-      date_interview: date_interview.value,
-    });
 
-    jobService
-      .updateJob(
-        id,
-        company.value,
-        position.value,
-        status.value,
-        date_applied.value,
-        date_interview.value
-      )
-      .then(res => res.json())
+    const newJob = {
+      _id: selectedJob._id,
+      company: e.target.company.value,
+      position: e.target.position.value,
+      status: e.target.status.value,
+      date_applied: e.target.date_applied.value,
+      date_interview: e.target.date_interview.value,
+    };
+    await jobService
+      .updateJob(newJob)
+      .then(res => {
+        const response = res.json();
+        return response;
+      })
       .then(data => {
         triggerUpdate(Math.random());
-        console.log(data);
         navigate('/list');
       })
       .catch(console.error);
@@ -81,15 +76,20 @@ const EditForm = ({ jobs, triggerUpdate }) => {
         <h3>Edit your job</h3>
         <div>
           <label htmlFor='company'>Company</label>
-          <input type='text' name='company' defaultValue={updatedJob.company} />
+          <input
+            id='company'
+            type='text'
+            name='company'
+            defaultValue={selectedJob.company}
+          />
           <label htmlFor='position'>Position</label>
-          <select name='position' defaultValue={updatedJob.position}>
+          <select name='position' defaultValue={selectedJob.position}>
             <option value='frontend'>frontend</option>
             <option value='backend'>backend</option>
             <option value='fullstack'>fullstack</option>
           </select>
           <label htmlFor='status'>Status</label>
-          <select name='status' defaultValue={updatedJob.status}>
+          <select name='status' defaultValue={selectedJob.status}>
             <option value='interested'>interested</option>
             <option value='applied'>applied</option>
             <option value='phone-interview'>phone-interview</option>
@@ -101,13 +101,13 @@ const EditForm = ({ jobs, triggerUpdate }) => {
           <input
             name='date_applied'
             type='datetime-local'
-            defaultValue={updatedJob.date_applied}
+            defaultValue={selectedJob.date_applied}
           />
           <label htmlFor='date_interview'>Date Interview</label>
           <input
             name='date_interview'
             type='datetime-local'
-            defaultValue={updatedJob.date_interview}
+            defaultValue={selectedJob.date_interview}
           />
           <EditButton>
             <button className='add--btn'>Edit</button>
@@ -115,7 +115,6 @@ const EditForm = ({ jobs, triggerUpdate }) => {
               <button className='cancel--btn'>Cancel</button>
             </Link>
           </EditButton>
-          {/* <button>EDIT</button> */}
         </div>
       </form>
     </UpdateForm>

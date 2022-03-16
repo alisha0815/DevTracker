@@ -1,0 +1,41 @@
+ <form onSubmit={editHandler}>
+        <h3>Edit your job</h3>
+        <div>
+          <label htmlFor='company'>Company</label>
+          {/* <input type='text' name='company' defaultValue={updatedJob.company} /> */}
+          <label htmlFor='position'>Position</label>
+          <select name='position' defaultValue={updatedJob.position}>
+            <option value='frontend'>frontend</option>
+            <option value='backend'>backend</option>
+            <option value='fullstack'>fullstack</option>
+          </select>
+          <label htmlFor='status'>Status</label>
+          <select name='status' defaultValue={updatedJob.status}>
+            <option value='interested'>interested</option>
+            <option value='applied'>applied</option>
+            <option value='phone-interview'>phone-interview</option>
+            <option value='technical interview'>technical interview</option>
+            <option value='declined'>declined</option>
+            <option value='accepted'>accepted</option>
+          </select>
+          <label htmlFor='date_applied'>Date Applied</label>
+          <input
+            name='date_applied'
+            type='datetime-local'
+            defaultValue={updatedJob.date_applied}
+          />
+          <label htmlFor='date_interview'>Date Interview</label>
+          <input
+            name='date_interview'
+            type='datetime-local'
+            defaultValue={updatedJob.date_interview}
+          />
+          <EditButton>
+            <button className='add--btn'>Edit</button>
+            <Link to={'/list'}>
+              <button className='cancel--btn'>Cancel</button>
+            </Link>
+          </EditButton>
+          {/* <button>EDIT</button> */}
+        </div>
+      </form>

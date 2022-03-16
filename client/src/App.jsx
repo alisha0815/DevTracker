@@ -16,14 +16,25 @@ const App = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [update, triggerUpdate] = useState();
 
-  const uid = localStorage.getItem('uid');
+  const getUid = async () => {
+    return await localStorage.getItem('uid');
+  };
+
+  const fetchItems = async () => {
+    const uid = await getUid();
+    const jobsFromDb = await jobService.getAllJobs(uid);
+
+    return jobsFromDb;
+  };
+
+  const setStateFunc = async () => {
+    const result = await fetchItems();
+    console.log('STEP 5: set state', result);
+    setJobs(result);
+  };
 
   useEffect(() => {
-    console.log('useEffectAPP');
-    jobService
-      .getAllJobs(uid)
-      .then(jobs => setJobs(jobs))
-      .catch(err => console.error(err));
+    setStateFunc();
   }, [update]);
 
   return (

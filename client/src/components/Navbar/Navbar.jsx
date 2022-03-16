@@ -129,9 +129,7 @@ const Navbar = () => {
           style={{ width: '15rem' }}></img>
       </div>
       <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-        <div className='logo'>
-          {console.log(localStorage.getItem('uid'), 'USER ID STORAGE')}
-        </div>
+        <div className='logo'></div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items'>
             <li className='navbar-toggle'>

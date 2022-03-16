@@ -9,7 +9,8 @@ import {
 const jobsRouter = express.Router();
 
 // GET
-jobsRouter.post('/list', retrieveJobs);
+// jobsRouter.post('/list', retrieveJobs);
+jobsRouter.get('/list', retrieveJobs);
 
 // POST
 jobsRouter.post('/add', createJob);
