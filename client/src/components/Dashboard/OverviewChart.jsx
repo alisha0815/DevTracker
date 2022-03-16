@@ -70,7 +70,7 @@ const OverviewChart = ({ jobData }) => {
                 {
                   label: "Job application",
                   data: jobData,
-                  backgroundColor: ["#FEDBDD", "#FFF1E3", "#DCF5E8", "#B9EAEA"],
+                  backgroundColor: ["#6f42c1", "#0dcaf0", "#e91e63", "#32ad00", "#ffc107", "#ffeb3b"],
                 },
               ],
             }}
