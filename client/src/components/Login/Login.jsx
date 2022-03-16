@@ -1,8 +1,31 @@
 import React from 'react';
 import { authentification } from '../../firebase';
 import { signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
+import styled from 'styled-components';
+import COLORS from '../../styles/styled.constants';
+
+const LoginButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid ; 
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 90%;
+  height: 3rem;
+  border-radius: 30px;
+  background-color: black;
+  color: white;
+  :hover {
+    background-color: ${COLORS.buttonLogin};
+    color: white;
+    cursor: pointer;
+  }
+`
+
 
 function Login({ loggedIn, setLoggedIn }) {
+
   const SingInWithGoogle = async res => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(authentification, provider)
@@ -43,9 +66,9 @@ function Login({ loggedIn, setLoggedIn }) {
   return (
     <div>
       {!loggedIn ? (
-        <button onClick={SingInWithGoogle}>Sing In With Google</button>
+        <LoginButton className="login-button" onClick={SingInWithGoogle}>Sing In With Google</LoginButton>
       ) : (
-        <button onClick={LogOut}>Log out</button>
+        <LoginButton className="login-button" onClick={LogOut}>Log out</LoginButton>
       )}
     </div>
   );

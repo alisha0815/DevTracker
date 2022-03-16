@@ -3,13 +3,15 @@ type colors = {
   title: string;
   text: string;
   button: string;
+  buttonLogin: string; 
 };
 
 export const COLORS: colors = {
-  background: '#FFF9F3',
+  background: '#242933',
   title: '#1F1F1F',
   text: '#666666',
-  button: '#EE5244',
+  button: '#000A19',
+  buttonLogin:'#27E9F2',  
   //   nav: "#FAF9F7",
 };
 

@@ -10,6 +10,7 @@ import COLORS from '../../styles/styled.constants';
 import Login from '../Login/Login';
 import logo from '../../assets/DevTrackerLogo.png';
 import textLogo from '../../assets/DevTrackerText.png';
+
 const NavbarWrapper = styled.div`
   /* display: flex; */
   display: inline-block;
@@ -60,35 +61,37 @@ const NavbarWrapper = styled.div`
   }
   .nav-text {
     display: flex;
-    justify-content: start;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 8px 0px 8px 16px;
     list-style: none;
     height: 60px;
+    width: 100%;
   }
 
   .nav-text a {
     text-decoration: none;
     color: white;
     font-size: 1em;
-    width: 95%;
+    width: 80%;
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 16px;
     border-radius: 4px;
   }
 
   .nav-text a:hover {
-    background-color: gray;
+    text-decoration: underline;
   }
 
   .nav-menu-items {
-    width: 100%;
+    width: 80%;
+    margin: 0px;
+    padding: 0px; 
   }
 
   .navbar-toggle {
-    
     width: 100%;
     height: 80px;
     display: flex;
@@ -98,6 +101,7 @@ const NavbarWrapper = styled.div`
 
   span {
     margin-left: 0.7rem;
+    
   }
 `;
 
@@ -138,13 +142,13 @@ const Navbar = () => {
               </Link>
             </li>
             {loggedIn ? (
-              <div>
+              <div style={{textAlign:'center'}}>
                 <img
                   src={userPhoto}
                   alt='user'
-                  style={{ borderRadius: '50px' }}></img>
-                <p>{userName}</p>
-                <p>{email}</p>
+                  style={{ borderRadius: '100px'}}></img>
+                <p style={{color:'white', fontSize:'0.8rem', margin:'5px'}}>{userName}</p>
+                <p style={{color:'white', fontSize:'0.6rem', marginBottom:'3rem'}}>{email}</p>
               </div>
             ) : (
               <div></div>
