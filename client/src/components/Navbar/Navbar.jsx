@@ -17,7 +17,7 @@ const NavbarWrapper = styled.div`
   width: 100%;
   justify-content: start;
   align-items: center;
-  background-color: #606060;
+  background-color: #242933;
   .logo {
     position: absolute;
     right: 30px;
@@ -69,7 +69,7 @@ const NavbarWrapper = styled.div`
 
   .nav-text a {
     text-decoration: none;
-    color: #f5f5f5;
+    color: white;
     font-size: 1em;
     width: 95%;
     height: 100%;
@@ -88,7 +88,7 @@ const NavbarWrapper = styled.div`
   }
 
   .navbar-toggle {
-    background-color: #060b26;
+    
     width: 100%;
     height: 80px;
     display: flex;
@@ -120,7 +120,7 @@ const Navbar = () => {
   return (
     <NavbarWrapper>
       <Link to='#' className='menu-bars'>
-        <FaIcons.FaBars onClick={showSidebar} />
+        <FaIcons.FaBars onClick={showSidebar} style={{color:"#75FF7A"}}/>
       </Link>
       <div className='logo'>
         <img
