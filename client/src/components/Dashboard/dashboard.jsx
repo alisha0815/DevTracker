@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import ApplicationChart from './ApplicationChart';
 import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from 'react-icons/bs';
 import * as BiIcons from 'react-icons/bi';
@@ -12,33 +11,30 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import COLORS from '../../styles/styled.constants';
 import OverviewChart from './OverviewChart';
-import TotalApplicationChart from './TotalApplicationChart';
 <i class='fa-solid fa-arrow-left-long-to-line'></i>;
 const DashboardWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
   flex-direction: row-reverse;
-  /* grid-template-rows: repeat(5, 100px); */
 `;
 const DashboardContainer = styled.div`
   flex: 1;
-  /* background-color: lightpink; */
-  /* padding-top: 2rem; */
 `;
 
 const Graph = styled.div`
   flex: 3;
   flex-direction: column;
-
   padding-top: 2rem;
+
   .chart--img {
-    /* border: 1px solid blue; */
   }
+
   .chart {
     opacity: 0;
     transition: all ease-in-out 250ms;
   }
+
   .chart.active {
     opacity: 1;
     transition: all ease-in-out 250ms;
@@ -46,15 +42,11 @@ const Graph = styled.div`
 `;
 
 const DashboardCard = styled.div`
-  /* display: grid;
-grid-gap: 30px;
-grid-template-rows: repeat(auto-fit, 350px); */
-  /* height: px; */
+
   justify-content: center;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   height: 100vh;
   h3,
@@ -100,8 +92,7 @@ grid-template-rows: repeat(auto-fit, 350px); */
     }
   }
   .filter--num {
-    flex: 1;
-    /* background-color: pink; */
+    flex: 1; 
     text-align: center;
     padding-left: 1rem;
     margin: 0 auto;
@@ -115,19 +106,46 @@ grid-template-rows: repeat(auto-fit, 350px); */
 `;
 
 const Dashboard = ({ jobs }) => {
-  console.log('jobs', jobs);
+
+
   const filteredStatus = str =>
-    [...jobs].filter(job => job.status === str).length;
+    [...jobs].filter(job => job.status === str).length
 
-  const handleAddChart = () => {
-    console.log('chart show button clicked!');
-  };
+  console.log(filteredStatus, '//----> Filtered status on Dashboard' )
 
-  const [chart, setChart] = useState(false);
+  const allJobStatus = []
+  const filterApplied = () => {
+    jobs.forEach((job)=> {
+      if(!allJobStatus.includes(job.status)){
+        allJobStatus.push(job.status); 
+      }
+    }) 
+  }
+  filterApplied(); 
 
-  const showChart = () => setChart(!chart);
-  // const hideChart = () => setChart(false);
+  console.log(allJobStatus, " JOB STATUS FROM OVERVIEW")
 
+
+  const filteredJobs = (status) =>
+    jobs.filter((job) => job.status === status).length;
+
+  const status = [
+    "phone-interview",
+    "technical interview",
+    "declined",
+    "accepted",
+    "interested", 
+    "applied"
+  ];
+
+  const jobData = status.map((el) => filteredJobs(el));
+  console.log(jobData);
+
+  const progressData = jobData
+    .map((job) => (job / jobs.length) * 100)
+    .map((item) => item.toFixed(2));
+
+  
   return (
     <>
       <DashboardWrapper>
@@ -135,7 +153,7 @@ const Dashboard = ({ jobs }) => {
         <DashboardContainer>
           <DashboardCard>
             <div className='applied'>
-              <button className='btn--icon' onClick={() => showChart()}>
+              <button className='btn--icon' onClick={() => filterApplied()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>{jobs.length}</div>
@@ -143,11 +161,11 @@ const Dashboard = ({ jobs }) => {
                 <div className='dashboard--icon'>
                   <AiIcons.AiFillFileAdd />
                 </div>
-                Applied
+                <p>Overview</p>
               </h3>
             </div>
             <div className='phone'>
-              <button className='btn--icon' onClick={() => showChart()}>
+              <button className='btn--icon' onClick={() => console.log('yup')}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>
@@ -157,7 +175,7 @@ const Dashboard = ({ jobs }) => {
                 <div className='dashboard--icon'>
                   <BsIcons.BsFillPhoneFill />
                 </div>
-                Interview
+                <p>Phone Interview</p>
               </h3>
             </div>
             <div className='technical'>
@@ -171,7 +189,7 @@ const Dashboard = ({ jobs }) => {
                 <div className='dashboard--icon'>
                   <BsIcons.BsFillFileCodeFill />
                 </div>
-                Interview
+                <p>Technical Interview</p>
               </h3>
             </div>
             <div className='results'>
@@ -193,21 +211,13 @@ const Dashboard = ({ jobs }) => {
             </div>
           </DashboardCard>
         </DashboardContainer>
-        {/* Graph Panel */}
         <Graph>
           <div>
-            <ApplicationChart
-              jobs={jobs}
-              className={chart ? 'chart active' : 'chart'}
+            <OverviewChart
+              jobData={jobData} 
+              allJobStatus={allJobStatus}
             />
           </div>
-
-          {/* <div className={chart ? 'chart active' : 'chart'}>
-            <OverviewChart />
-          </div>
-          <div className={chart ? 'chart active' : 'chart'}>
-            <OverviewChart />
-          </div> */}
         </Graph>
       </DashboardWrapper>
     </>

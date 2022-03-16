@@ -24,8 +24,11 @@ background-color: white;
 `;
 
 
-const OverviewChart = ({ jobData }) => {
+const OverviewChart = ({ jobData, allJobStatus }) => {
 
+
+ console.log(allJobStatus, "all Job status from OverviewChart")
+  console.log(jobData, '//----> Job Data from OverviewChart')
   return (
     <>
       <OverviewWrapper>
@@ -58,13 +61,8 @@ const OverviewChart = ({ jobData }) => {
               },
             }}
             data={{
-              labels: [
-                "Phone Interview",
-                "Technical Interview",
-                "Declined",
-                "Accepted",
-                "Interested", 
-                "Applied"
+              labels: [ 
+              ...allJobStatus
               ],
               datasets: [
                 {
