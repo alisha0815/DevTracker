@@ -46,6 +46,7 @@ const updateJob = async (req, res) => {
 exports.updateJob = updateJob;
 // Delete job post
 const removeJob = async (req, res) => {
+    console.log('DEL CONTROLLER');
     try {
         const { jobId } = req.params;
         console.log(jobId, 'thi is the JOb id');

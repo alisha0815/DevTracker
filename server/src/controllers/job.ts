@@ -45,6 +45,8 @@ export const updateJob: RequestHandler = async (req, res) => {
 
 // Delete job post
 export const removeJob: RequestHandler = async (req, res) => {
+  console.log('DEL CONTROLLER');
+
   try {
     const { jobId } = req.params;
     console.log(jobId, 'thi is the JOb id');

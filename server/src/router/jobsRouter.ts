@@ -16,7 +16,7 @@ jobsRouter.get('/list', retrieveJobs);
 jobsRouter.post('/add', createJob);
 
 // DELETE
-jobsRouter.delete('/deletelist/:jobId', removeJob);
+jobsRouter.delete('/list/:jobId', removeJob);
 
 // PUT
 jobsRouter.put('/edit/:jobId', updateJob);

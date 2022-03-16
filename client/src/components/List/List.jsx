@@ -134,19 +134,19 @@ const CompanyCardButton = styled.div`
 `;
 
 const List = ({ jobs, setJobs }) => {
-  console.log('STEP 6 - render all jobs in the list', jobs);
   let navigate = useNavigate();
   const [filter, setFilter] = useState(null);
-
+  console.log('JOBS', jobs);
   const editHandler = id => {
     navigate(`/edit/${id}`);
   };
 
-  const deleteHandler = id => {
-    jobService
+  const deleteHandler = async id => {
+    await jobService
       .deleteJob(id)
       .then(() => setJobs(jobs.filter(job => job.id !== id)));
-    console.log('deleted');
+    const alteredJobs = jobs.filter(job => job._id !== id);
+    setJobs(alteredJobs);
   };
 
   return (
