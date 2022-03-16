@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Paragraph } from './Paragraph';
 import { CardBtn } from './CardBtn';
+import { Job } from '../../interfaces';
 
 const CompanyList = styled.div`
 box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
@@ -38,15 +39,25 @@ const CompanyCardButton = styled.div`
   justify-content: space-evenly;
 `;
 
+const CardSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+// export const Card = ({ job, editHandler, deleteHandler } : {job: Job, editHandlet:any, deleteHandler:any}) => {
 export const Card = ({ job, editHandler, deleteHandler }) => {
   return (
     <CompanyList key={job._id}>
       <CompanyWrapper>
-        <div className='card--section'>
+        {/* <div className='card--section'> */}
+        <CardSection>
           {Object.keys(job).map(property => {
             return <Paragraph property={property} job={job}></Paragraph>;
           })}
-        </div>
+        </CardSection>
+        {/* </div> */}
         <li className='update'>
           <FontAwesomeIcon icon={faRepeat} />
           Last update {moment(job.updatedAt).startOf('day').fromNow()}

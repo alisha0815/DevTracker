@@ -2,21 +2,11 @@ import react, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import jobService from '../../service/jobService';
-
 import { Btn } from './Btn';
 import { Card } from '../Card/Card';
 const ListWrapper = styled.div`
   width: 100%;
   height: 100vh;
-`;
-
-const ListButton = styled.div`
-  width: 100%;
-  height: 20vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.2em;
 `;
 
 const PositionButton = styled.div`
@@ -70,40 +60,33 @@ const List = ({ jobs, setJobs }) => {
     'accepted',
     'interested',
   ];
-  return (
-    <>
-      <ListWrapper>
-        <ListButton>
-          <PositionButton>
-            {btnValues.map(value => {
-              return (
-                <p>
-                  <Btn value={value} setFilter={setFilter}></Btn>
-                </p>
-              );
-            })}
-          </PositionButton>
-        </ListButton>
 
-        <CardWrapper>
-          {jobs
-            .filter(job => {
-              if (filter === null) {
-                return job;
-              }
-              return job.position === filter || job.status === filter;
-            })
-            .map(job => {
-              return (
-                <Card
-                  job={job}
-                  editHandler={editHandler}
-                  deleteHandler={deleteHandler}></Card>
-              );
-            })}
-        </CardWrapper>
-      </ListWrapper>
-    </>
+  return (
+    <ListWrapper>
+      <PositionButton>
+        {btnValues.map(value => {
+          return <Btn value={value} setFilter={setFilter}></Btn>;
+        })}
+      </PositionButton>
+
+      <CardWrapper>
+        {jobs
+          .filter(job => {
+            if (filter === null) {
+              return job;
+            }
+            return job.position === filter || job.status === filter;
+          })
+          .map(job => {
+            return (
+              <Card
+                job={job}
+                editHandler={editHandler}
+                deleteHandler={deleteHandler}></Card>
+            );
+          })}
+      </CardWrapper>
+    </ListWrapper>
   );
 };
 
