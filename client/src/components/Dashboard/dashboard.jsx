@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import ApplicationChart from './ApplicationChart';
 import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from 'react-icons/bs';
 import * as BiIcons from 'react-icons/bi';
@@ -12,33 +11,31 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import COLORS from '../../styles/styled.constants';
 import OverviewChart from './OverviewChart';
-import TotalApplicationChart from './TotalApplicationChart';
-<i class='fa-solid fa-arrow-left-long-to-line'></i>;
+
+
 const DashboardWrapper = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
   flex-direction: row-reverse;
-  /* grid-template-rows: repeat(5, 100px); */
 `;
 const DashboardContainer = styled.div`
   flex: 1;
-  /* background-color: lightpink; */
-  /* padding-top: 2rem; */
 `;
 
 const Graph = styled.div`
   flex: 3;
   flex-direction: column;
-
   padding-top: 2rem;
+
   .chart--img {
-    /* border: 1px solid blue; */
   }
+
   .chart {
     opacity: 0;
     transition: all ease-in-out 250ms;
   }
+
   .chart.active {
     opacity: 1;
     transition: all ease-in-out 250ms;
@@ -46,15 +43,11 @@ const Graph = styled.div`
 `;
 
 const DashboardCard = styled.div`
-  /* display: grid;
-grid-gap: 30px;
-grid-template-rows: repeat(auto-fit, 350px); */
-  /* height: px; */
+
   justify-content: center;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   height: 100vh;
   h3,
@@ -100,8 +93,7 @@ grid-template-rows: repeat(auto-fit, 350px); */
     }
   }
   .filter--num {
-    flex: 1;
-    /* background-color: pink; */
+    flex: 1; 
     text-align: center;
     padding-left: 1rem;
     margin: 0 auto;
@@ -115,19 +107,71 @@ grid-template-rows: repeat(auto-fit, 350px); */
 `;
 
 const Dashboard = ({ jobs }) => {
-  console.log('jobs', jobs);
-  const filteredStatus = str =>
-    [...jobs].filter(job => job.status === str).length;
 
-  const handleAddChart = () => {
-    console.log('chart show button clicked!');
-  };
 
-  const [chart, setChart] = useState(false);
+const filteredStatus = str =>
+[...jobs].filter(job => job.status === str).length
 
-  const showChart = () => setChart(!chart);
-  // const hideChart = () => setChart(false);
+const [JobStatus, setJobStatus] = useState([])
+const [jobData, setJobData] = useState([])
 
+useEffect(() => {
+  filterAll();
+},[])
+
+const filterAll = () => {
+  const result = jobs.map((job) => {
+      return job.status; 
+  }).sort()
+ 
+  let unique = [...new Set(result)]
+  
+  const counts = {}; 
+  result.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  console.log(counts, 'this is a test');
+  const array = Object.keys(counts).map(function(key) {return counts[key]}); 
+  
+  setJobData(array); 
+  setJobStatus(unique)
+}
+
+
+const filterPosition = () => {
+  const result = jobs.map((job) => {
+      return job.position; 
+  }).sort()
+ 
+  let unique = [...new Set(result)]
+  
+  const counts = {}; 
+  result.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  console.log(counts, 'this is a test');
+  const array = Object.keys(counts).map(function(key) {return counts[key]}); 
+  
+  setJobData(array); 
+  setJobStatus(unique)
+}
+
+
+
+const filterCompany = () => {
+  const result = jobs.map((job) => {
+      return job.company; 
+  }).sort()
+ 
+  let unique = [...new Set(result)]
+  
+  const counts = {}; 
+  result.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  console.log(counts, 'this is a test');
+  const array = Object.keys(counts).map(function(key) {return counts[key]}); 
+  
+  setJobData(array); 
+  setJobStatus(unique)
+}
+
+
+  
   return (
     <>
       <DashboardWrapper>
@@ -135,7 +179,7 @@ const Dashboard = ({ jobs }) => {
         <DashboardContainer>
           <DashboardCard>
             <div className='applied'>
-              <button className='btn--icon' onClick={() => showChart()}>
+              <button className='btn--icon' onClick={() => filterAll()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>{jobs.length}</div>
@@ -143,35 +187,33 @@ const Dashboard = ({ jobs }) => {
                 <div className='dashboard--icon'>
                   <AiIcons.AiFillFileAdd />
                 </div>
-                Applied
+                <p>Overview</p>
               </h3>
             </div>
             <div className='phone'>
-              <button className='btn--icon' onClick={() => showChart()}>
+              <button className='btn--icon' onClick={() => filterPosition()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>
-                {filteredStatus('phone-interview')}
               </div>
               <h3>
                 <div className='dashboard--icon'>
                   <BsIcons.BsFillPhoneFill />
                 </div>
-                Interview
+                <p>Position</p>
               </h3>
             </div>
             <div className='technical'>
-              <button className='btn--icon'>
+              <button className='btn--icon' onClick={() => filterCompany()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>
-                {filteredStatus('technical interview')}
               </div>
               <h3>
                 <div className='dashboard--icon'>
                   <BsIcons.BsFillFileCodeFill />
                 </div>
-                Interview
+                <p>Companies</p>
               </h3>
             </div>
             <div className='results'>
@@ -193,21 +235,13 @@ const Dashboard = ({ jobs }) => {
             </div>
           </DashboardCard>
         </DashboardContainer>
-        {/* Graph Panel */}
         <Graph>
           <div>
-            <ApplicationChart
-              jobs={jobs}
-              className={chart ? 'chart active' : 'chart'}
+            <OverviewChart
+              jobData={jobData} 
+              allJobStatus={JobStatus}
             />
           </div>
-
-          {/* <div className={chart ? 'chart active' : 'chart'}>
-            <OverviewChart />
-          </div>
-          <div className={chart ? 'chart active' : 'chart'}>
-            <OverviewChart />
-          </div> */}
         </Graph>
       </DashboardWrapper>
     </>

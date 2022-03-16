@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
@@ -24,7 +24,16 @@ background-color: white;
 `;
 
 
-const OverviewChart = ({ jobData }) => {
+const OverviewChart = ({ jobData, allJobStatus }) => {
+
+const [testJobData, setTestJobData] = useState([]); 
+
+useEffect(() => {
+ 
+  setTestJobData(jobData);
+
+}, [jobData])
+
 
   return (
     <>
@@ -58,17 +67,14 @@ const OverviewChart = ({ jobData }) => {
               },
             }}
             data={{
-              labels: [
-                "Phone Interview",
-                "Technical-Interview",
-                "Declined",
-                "Accepted",
+              labels: [ 
+              ...allJobStatus
               ],
               datasets: [
                 {
                   label: "Job application",
-                  data: jobData,
-                  backgroundColor: ["#FEDBDD", "#FFF1E3", "#DCF5E8", "#B9EAEA"],
+                  data: testJobData,
+                  backgroundColor: ["#6f42c1", "#0dcaf0", "#e91e63", "#32ad00", "#ffc107", "#ffeb3b"],
                 },
               ],
             }}
