@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from 'react-icons/bs';
@@ -11,7 +11,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import COLORS from '../../styles/styled.constants';
 import OverviewChart from './OverviewChart';
-<i class='fa-solid fa-arrow-left-long-to-line'></i>;
+
+
 const DashboardWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -108,42 +109,67 @@ const DashboardCard = styled.div`
 const Dashboard = ({ jobs }) => {
 
 
-  const filteredStatus = str =>
-    [...jobs].filter(job => job.status === str).length
+const filteredStatus = str =>
+[...jobs].filter(job => job.status === str).length
 
-  console.log(filteredStatus, '//----> Filtered status on Dashboard' )
+const [JobStatus, setJobStatus] = useState([])
+const [jobData, setJobData] = useState([])
 
-  const allJobStatus = []
-  const filterApplied = () => {
-    jobs.forEach((job)=> {
-      if(!allJobStatus.includes(job.status)){
-        allJobStatus.push(job.status); 
-      }
-    }) 
-  }
-  filterApplied(); 
+useEffect(() => {
+  filterAll();
+},[])
 
-  console.log(allJobStatus, " JOB STATUS FROM OVERVIEW")
+const filterAll = () => {
+  const result = jobs.map((job) => {
+      return job.status; 
+  }).sort()
+ 
+  let unique = [...new Set(result)]
+  
+  const counts = {}; 
+  result.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  console.log(counts, 'this is a test');
+  const array = Object.keys(counts).map(function(key) {return counts[key]}); 
+  
+  setJobData(array); 
+  setJobStatus(unique)
+}
 
 
-  const filteredJobs = (status) =>
-    jobs.filter((job) => job.status === status).length;
+const filterPosition = () => {
+  const result = jobs.map((job) => {
+      return job.position; 
+  }).sort()
+ 
+  let unique = [...new Set(result)]
+  
+  const counts = {}; 
+  result.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  console.log(counts, 'this is a test');
+  const array = Object.keys(counts).map(function(key) {return counts[key]}); 
+  
+  setJobData(array); 
+  setJobStatus(unique)
+}
 
-  const status = [
-    "phone-interview",
-    "technical interview",
-    "declined",
-    "accepted",
-    "interested", 
-    "applied"
-  ];
 
-  const jobData = status.map((el) => filteredJobs(el));
-  console.log(jobData);
 
-  const progressData = jobData
-    .map((job) => (job / jobs.length) * 100)
-    .map((item) => item.toFixed(2));
+const filterCompany = () => {
+  const result = jobs.map((job) => {
+      return job.company; 
+  }).sort()
+ 
+  let unique = [...new Set(result)]
+  
+  const counts = {}; 
+  result.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+  console.log(counts, 'this is a test');
+  const array = Object.keys(counts).map(function(key) {return counts[key]}); 
+  
+  setJobData(array); 
+  setJobStatus(unique)
+}
+
 
   
   return (
@@ -153,7 +179,7 @@ const Dashboard = ({ jobs }) => {
         <DashboardContainer>
           <DashboardCard>
             <div className='applied'>
-              <button className='btn--icon' onClick={() => filterApplied()}>
+              <button className='btn--icon' onClick={() => filterAll()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>{jobs.length}</div>
@@ -165,31 +191,29 @@ const Dashboard = ({ jobs }) => {
               </h3>
             </div>
             <div className='phone'>
-              <button className='btn--icon' onClick={() => console.log('yup')}>
+              <button className='btn--icon' onClick={() => filterPosition()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>
-                {filteredStatus('phone-interview')}
               </div>
               <h3>
                 <div className='dashboard--icon'>
                   <BsIcons.BsFillPhoneFill />
                 </div>
-                <p>Phone Interview</p>
+                <p>Position</p>
               </h3>
             </div>
             <div className='technical'>
-              <button className='btn--icon'>
+              <button className='btn--icon' onClick={() => filterCompany()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
               <div className='filter--num'>
-                {filteredStatus('technical interview')}
               </div>
               <h3>
                 <div className='dashboard--icon'>
                   <BsIcons.BsFillFileCodeFill />
                 </div>
-                <p>Technical Interview</p>
+                <p>Companies</p>
               </h3>
             </div>
             <div className='results'>
@@ -215,7 +239,7 @@ const Dashboard = ({ jobs }) => {
           <div>
             <OverviewChart
               jobData={jobData} 
-              allJobStatus={allJobStatus}
+              allJobStatus={JobStatus}
             />
           </div>
         </Graph>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement } from "chart.js";
@@ -26,9 +26,15 @@ background-color: white;
 
 const OverviewChart = ({ jobData, allJobStatus }) => {
 
+const [testJobData, setTestJobData] = useState([]); 
 
- console.log(allJobStatus, "all Job status from OverviewChart")
-  console.log(jobData, '//----> Job Data from OverviewChart')
+useEffect(() => {
+ 
+  setTestJobData(jobData);
+
+}, [jobData])
+
+
   return (
     <>
       <OverviewWrapper>
@@ -67,7 +73,7 @@ const OverviewChart = ({ jobData, allJobStatus }) => {
               datasets: [
                 {
                   label: "Job application",
-                  data: jobData,
+                  data: testJobData,
                   backgroundColor: ["#6f42c1", "#0dcaf0", "#e91e63", "#32ad00", "#ffc107", "#ffeb3b"],
                 },
               ],
