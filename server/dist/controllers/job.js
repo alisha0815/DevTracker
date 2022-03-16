@@ -5,8 +5,9 @@ const jobs_1 = require("../model/jobs");
 //Find all jobs
 const retrieveJobs = async (req, res) => {
     try {
-        const { id } = req.body;
-        const jobs = await jobs_1.Job.find({ uid: id });
+        // const { id } = req.body;
+        // const jobs = await Job.find({ uid: id });
+        const jobs = await jobs_1.Job.find({});
         res.send(jobs);
     }
     catch (error) {
@@ -32,8 +33,8 @@ exports.createJob = createJob;
 const updateJob = async (req, res) => {
     try {
         const { jobId } = req.params;
+        console.log('REQ', req.body);
         const updated = await jobs_1.Job.findOneAndUpdate({ _id: jobId }, req.body);
-        console.log('updated', updated);
         res.status(200).send(updated);
     }
     catch (error) {

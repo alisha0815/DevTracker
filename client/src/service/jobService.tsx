@@ -3,18 +3,35 @@ import { Job } from '../interfaces';
 const baseURL = `http://localhost:3000`;
 
 const jobService = {
-  async getAllJobs(id: string) {
-    const response = await fetch(`${baseURL}/list`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ id })
-    });
-    const data = await response.json();
-    if (response.status !== 200) {
-      throw new Error('Error fetching data');
-    }
-    return data;
+
+  async getAllJobs() {
+    return await fetch(`${baseURL}/list`)
+      .then(response => {
+        if (response.status < 300) {
+          return response.json()
+        } else {
+          console.log('error', response.status);
+          return new Error(`There was an error`)
+        }
+      })
+      .then(data => {
+        console.log('datainfetch', data);
+        return data
+      });
   },
+
+  // async getAllJobs(id: string) {
+  //   const response = await fetch(`${baseURL}/list`, {
+  //     method: 'POST',
+  //     headers: { 'Content-type': 'application/json' },
+  //     body: JSON.stringify({ id })
+  //   });
+  //   const data = await response.json();
+  //   if (response.status !== 200) {
+  //     throw new Error('Error fetching data');
+  //   }
+  //   return await data;
+  // },
 
   async createJob(job: Job) {
     const response = await fetch(`${baseURL}/add`, {
@@ -30,12 +47,13 @@ const jobService = {
   },
 
   async updateJob(job: Job) {
-    const { id, company, position, status, date_applied, date_interview } = job;
+    const { _id, company, position, status, date_applied, date_interview } = job;
+    console.log('API', job);
 
-    return await fetch(`${baseURL}/edit/${id}`, {
+    return await fetch(`${baseURL}/edit/${_id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        id: id,
+        _id: _id,
         company: company,
         position: position,
         status: status,

@@ -4,11 +4,10 @@ import { request } from 'http';
 
 //Find all jobs
 export const retrieveJobs: RequestHandler = async (req, res) => {
-
-
   try {
-    const { id } = req.body;
-    const jobs = await Job.find({uid: id});
+    // const { id } = req.body;
+    // const jobs = await Job.find({ uid: id });
+    const jobs = await Job.find({});
     res.send(jobs);
   } catch (error) {
     res.status(404).send({ error, message: 'Sorry, nothing found' });
@@ -33,8 +32,9 @@ export const createJob: RequestHandler = async (req, res) => {
 export const updateJob: RequestHandler = async (req, res) => {
   try {
     const { jobId } = req.params;
+    console.log('REQ', req.body);
+
     const updated = await Job.findOneAndUpdate({ _id: jobId }, req.body);
-    console.log('updated', updated);
     res.status(200).send(updated);
   } catch (error) {
     res
