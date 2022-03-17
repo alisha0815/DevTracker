@@ -7,9 +7,8 @@ import {
   faTrashCan,
   faRepeat,
 } from '@fortawesome/free-solid-svg-icons';
-import { Paragraph } from './Paragraph';
 import { CardBtn } from './CardBtn';
-import { Job } from '../../interfaces';
+import { Content } from './Content';
 
 const CompanyList = styled.div`
 
@@ -35,10 +34,10 @@ justify-content: center;
 const CompanyWrapper = styled.div`
   width: 100%;
   font-size: 1.2em;
-  background-color: #ebebeb; 
-  margin: 1rem; 
+  background-color: #ebebeb;
+  margin: 1rem;
   border-radius: 3px;
-  padding: 2rem;  
+  padding: 2rem;
 `;
 const CompanyCardButton = styled.div`
   margin-top: 1rem;
@@ -56,15 +55,11 @@ const CardSection = styled.div`
 // export const Card = ({ job, editHandler, deleteHandler } : {job: Job, editHandlet:any, deleteHandler:any}) => {
 export const Card = ({ job, editHandler, deleteHandler }) => {
   return (
-    <CompanyList key={job._id} >
-      <CompanyWrapper >
-        {/* <div className='card--section'> */}
+    <CompanyList key={job._id}>
+      <CompanyWrapper>
         <CardSection>
-          {Object.keys(job).map(property => {
-            return <Paragraph property={property} job={job}></Paragraph>;
-          })}
+          <Content job={job}></Content>
         </CardSection>
-        {/* </div> */}
         <li className='update'>
           <FontAwesomeIcon icon={faRepeat} />
           Last update {moment(job.updatedAt).startOf('day').fromNow()}
