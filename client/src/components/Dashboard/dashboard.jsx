@@ -50,6 +50,17 @@ const DashboardCard = styled.div`
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  
+  .chart-navigation{
+    display: flex;
+    flex-direction: row;
+    background-color: #ebebeb;
+    border-radius: 3px; 
+    padding: 1rem; 
+    width: 100%;
+    margin: 1rem;  
+  }
+
   h3,
   h4 {
     text-align: center;
@@ -179,10 +190,12 @@ const filterCompany = () => {
         {/* Summary Panel */}
         <DashboardContainer>
           <DashboardCard>
-            <div className='applied'>
+            <div className='chart-navigation'>
+              <div>
               <button className='btn--icon' onClick={() => filterAll()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
+              </div>
               <div className='filter--num'>{jobs.length}</div>
               <h3>
                 <div className='dashboard--icon'>
@@ -191,7 +204,7 @@ const filterCompany = () => {
                 <p>Overview</p>
               </h3>
             </div>
-            <div className='phone'>
+            <div className='chart-navigation'>
               <button className='btn--icon' onClick={() => filterPosition()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>
@@ -204,7 +217,7 @@ const filterCompany = () => {
                 <p>Position</p>
               </h3>
             </div>
-            <div className='technical'>
+            <div className='chart-navigation'>
               <button className='btn--icon' onClick={() => filterCompany()}>
                 <BiIcons.BiLeftArrowCircle />
               </button>

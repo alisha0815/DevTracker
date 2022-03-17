@@ -10,18 +10,23 @@ const ListWrapper = styled.div`
 `;
 
 const PositionButton = styled.div`
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   flex: 1;
   display: flex;
   width: 100%;
   margin-top: 3rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
 `;
 
 const CardWrapper = styled.div`
   padding: 3rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  
   .card--section {
     padding-left: 1.2rem;
   }

@@ -13,7 +13,6 @@ import { Content } from './Content';
 const CompanyList = styled.div`
 
 border-radius: 15px;
-width: 50%;
 display: flex;
 justify-content: center;
 .company--title {
@@ -32,7 +31,12 @@ justify-content: center;
 
 `;
 const CompanyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+  min-width: 25rem; 
+  max-width: 25rem; 
   font-size: 1.2em;
   background-color: #ebebeb;
   margin: 1rem;
