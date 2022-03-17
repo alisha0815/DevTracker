@@ -10,11 +10,12 @@ const ListWrapper = styled.div`
 `;
 
 const PositionButton = styled.div`
+  justify-content: center;
+  flex-wrap: wrap;
   flex: 1;
   display: flex;
-  justify-content: center;
   width: 100%;
-  flex-wrap: wrap;
+  margin-top: 3rem;
 `;
 
 const CardWrapper = styled.div`

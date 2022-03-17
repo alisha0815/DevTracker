@@ -75,6 +75,7 @@ export const Card = ({ job, editHandler, deleteHandler }) => {
             handler={editHandler}
             icon={faPenToSquare}
             job={job}></CardBtn>
+
           <CardBtn
             handler={deleteHandler}
             icon={faTrashCan}

@@ -30,21 +30,22 @@ const GlobalStyle = createGlobalStyle`
   }
   button {
 
-    margin-top: 0.8rem;
-    
-    outline: none;
-    border: none;
-    border-radius: 15px;
-    font-size: 1.2rem;
-    font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid ; 
+  margin: 0.5em;
+  padding: 0.5em;
+  width: 90%;
+  height: 3rem;
+  border-radius: 30px;
+  background-color: black;
+  color: white;
+  :hover {
+    background-color: ${COLORS.buttonLogin};
     color: white;
-    background-color: ${COLORS.button};
-    transition: transform 250ms ease-in;
-  };
-
-    button:hover {
-    transform: scale(1.04);
-    opacity: 0.8;
+    cursor: pointer;
+  }
   }
 
 
