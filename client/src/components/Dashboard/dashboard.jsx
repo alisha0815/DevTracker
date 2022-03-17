@@ -21,6 +21,13 @@ const DashboardWrapper = styled.div`
 `;
 const DashboardContainer = styled.div`
   flex: 1;
+  .dashboard--icon{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Graph = styled.div`
@@ -54,10 +61,13 @@ const DashboardCard = styled.div`
   .chart-navigation{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     background-color: #ebebeb;
     border-radius: 3px; 
     padding: 1rem; 
     width: 100%;
+    min-width: 20rem;
     margin: 1rem;  
   }
 
@@ -104,16 +114,14 @@ const DashboardCard = styled.div`
     }
   }
   .filter--num {
-    flex: 1; 
+    flex: 0.5; 
     text-align: center;
-    padding-left: 1rem;
-    margin: 0 auto;
     font-weight: 900;
     color: ${COLORS.button};
-    font-size: 3rem;
+    font-size: 2rem;
   }
   h3 {
-    flex: 3;
+    margin:0px; 
   }
 `;
 
@@ -192,48 +200,28 @@ const filterCompany = () => {
           <DashboardCard>
             <div className='chart-navigation'>
               <div>
-              <button className='btn--icon' onClick={() => filterAll()}>
-                <BiIcons.BiLeftArrowCircle />
-              </button>
+                <button onClick={() => filterAll()}><BiIcons.BiLeftArrowCircle /></button>
               </div>
               <div className='filter--num'>{jobs.length}</div>
-              <h3>
-                <div className='dashboard--icon'>
-                  <AiIcons.AiFillFileAdd />
-                </div>
-                <p>Overview</p>
-              </h3>
+              <div className='dashboard--icon' ><h3>Overview</h3></div>
             </div>
+
             <div className='chart-navigation'>
-              <button className='btn--icon' onClick={() => filterPosition()}>
-                <BiIcons.BiLeftArrowCircle />
-              </button>
-              <div className='filter--num'>
-              </div>
-              <h3>
-                <div className='dashboard--icon'>
-                  <BsIcons.BsFillPhoneFill />
-                </div>
-                <p>Position</p>
-              </h3>
+            <div>
+              <button  onClick={() => filterPosition()}><BiIcons.BiLeftArrowCircle /></button>
             </div>
+              <div className='filter--num'> <BsIcons.BsFillPhoneFill /> </div>
+              <div className='dashboard--icon' ><h3>Position</h3></div>
+            </div>
+
             <div className='chart-navigation'>
-              <button className='btn--icon' onClick={() => filterCompany()}>
-                <BiIcons.BiLeftArrowCircle />
-              </button>
-              <div className='filter--num'>
+              <div>
+                <button onClick={() => filterCompany()}><BiIcons.BiLeftArrowCircle /></button>
               </div>
-              <h3>
-                <div className='dashboard--icon'>
-                  <BsIcons.BsFillFileCodeFill />
-                </div>
-                <p>Companies</p>
-              </h3>
-            </div>
-            <div className='results'>
-              <button className='btn--icon'>
-                <BiIcons.BiLeftArrowCircle />
-              </button>
+              <div className='filter--num'><BsIcons.BsFillFileCodeFill /></div>
+                <div className='dashboard--icon'><h3>Companies</h3></div></div>
+
+            <div className='chart-navigation'>
               <div className='filter--num'>
                 <div>
                   <FontAwesomeIcon icon={faCircleXmark} />
