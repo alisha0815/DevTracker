@@ -26,6 +26,7 @@ justify-content: center;
   }
 }
 .update {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -36,9 +37,11 @@ const CompanyWrapper = styled.div`
   font-size: 1.2em;
   background-color: #ebebeb; 
   margin: 1rem; 
+  border-radius: 3px;
+  padding: 2rem;  
 `;
 const CompanyCardButton = styled.div`
-  margin: 1rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-evenly;
 `;

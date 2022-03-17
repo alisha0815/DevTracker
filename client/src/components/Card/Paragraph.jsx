@@ -12,7 +12,6 @@ import {
 
 const CompanySubTitle = styled.div`
   display: inline-block;
-  padding-left: 1.5rem;
   span {
     padding-left: 1rem;
   }
@@ -31,8 +30,8 @@ export const Paragraph = ({ property, job }) => {
   let icon;
   let value = job[property];
   if (property === 'company') {
-    icon = faBuilding;
-    value = <h2>{value}</h2>;
+    value = <div style={{ textAlign:'center'}}><h2>{value}</h2> <hr style={{border:'solid 2px #27E9F2', minWidth:'10rem'}}></hr> </div>;
+    
   }
 
   if (property === 'position') {
@@ -57,7 +56,7 @@ export const Paragraph = ({ property, job }) => {
       {showParagraph ? (
         <>
           <FontAwesomeIcon icon={icon} className='sub--icon' />
-          <CompanySubTitle> {value}</CompanySubTitle>
+          <CompanySubTitle>{value} </CompanySubTitle>
         </>
       ) : null}
     </div>
