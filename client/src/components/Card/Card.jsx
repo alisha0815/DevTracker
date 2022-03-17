@@ -12,29 +12,33 @@ import { CardBtn } from './CardBtn';
 import { Job } from '../../interfaces';
 
 const CompanyList = styled.div`
-box-shadow: 6px -1px 20px 0px rgba(0, 0, 0, 0.45);
+
 border-radius: 15px;
-width: 100%;
+width: 50%;
 display: flex;
 justify-content: center;
 .company--title {
   font-size: 1.8em;
   text-align: center;
-  padding: 1.2rem;
 } 
   h2 {
-    padding-left: 1.2rem;
     display: inline-block;
   }
 }
+.update {
+  align-items: center;
+  justify-content: center;
+}
+
 `;
 const CompanyWrapper = styled.div`
   width: 100%;
   font-size: 1.2em;
+  background-color: #ebebeb; 
+  margin: 1rem; 
 `;
 const CompanyCardButton = styled.div`
-  padding-top: 1rem;
-  padding-bottom: 1.4rem;
+  margin: 1rem;
   display: flex;
   justify-content: space-evenly;
 `;
@@ -49,8 +53,8 @@ const CardSection = styled.div`
 // export const Card = ({ job, editHandler, deleteHandler } : {job: Job, editHandlet:any, deleteHandler:any}) => {
 export const Card = ({ job, editHandler, deleteHandler }) => {
   return (
-    <CompanyList key={job._id}>
-      <CompanyWrapper>
+    <CompanyList key={job._id} >
+      <CompanyWrapper >
         {/* <div className='card--section'> */}
         <CardSection>
           {Object.keys(job).map(property => {

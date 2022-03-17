@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
   button {
-   padding: 0.8rem;
+
     margin-top: 0.8rem;
     
     outline: none;
@@ -66,6 +66,10 @@ const GlobalStyle = createGlobalStyle`
     display: block;
     text-align: left;
     margin-bottom: 0.4rem;
+  }
+
+  .login-button{
+    font-size: 0.8rem; 
   }
 
 `;

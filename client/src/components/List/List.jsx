@@ -19,6 +19,8 @@ const PositionButton = styled.div`
 
 const CardWrapper = styled.div`
   padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
   .card--section {
     padding-left: 1.2rem;
   }
@@ -82,7 +84,8 @@ const List = ({ jobs, setJobs }) => {
               <Card
                 job={job}
                 editHandler={editHandler}
-                deleteHandler={deleteHandler}></Card>
+                deleteHandler={deleteHandler}
+                ></Card>
             );
           })}
       </CardWrapper>

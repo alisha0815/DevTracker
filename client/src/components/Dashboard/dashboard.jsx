@@ -135,6 +135,7 @@ const filterAll = () => {
   setJobStatus(unique)
 }
 
+// const [array, unique ] = filterAll(jobs); 
 
 const filterPosition = () => {
   const result = jobs.map((job) => {

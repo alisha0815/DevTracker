@@ -23,7 +23,6 @@ const LoginButton = styled.div`
   }
 `
 
-
 function Login({ loggedIn, setLoggedIn }) {
 
   const SingInWithGoogle = async res => {
@@ -68,7 +67,7 @@ function Login({ loggedIn, setLoggedIn }) {
       {!loggedIn ? (
         <LoginButton className="login-button" onClick={SingInWithGoogle}>Sing In With Google</LoginButton>
       ) : (
-        <LoginButton className="login-button" onClick={LogOut}>Log out</LoginButton>
+        <LoginButton className="login-google" onClick={LogOut}>Log out</LoginButton>
       )}
     </div>
   );

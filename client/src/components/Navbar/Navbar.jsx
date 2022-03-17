@@ -166,12 +166,12 @@ const Navbar = () => {
                 );
               })
             ) : (
-              <div>
+              <div style={{textAlign:'center'}}>
                 <img
                   src={logo}
                   alt='DevTracker Logo'
-                  style={{ borderRadius: '50px', width: '7rem' }}></img>
-                <p style={{ color: 'white', width: '7rem' }}>
+                  style={{ borderRadius: '50px', width: '7rem', marginTop:'30px' }}></img>
+                <p style={{ color: 'white', marginTop:'30px' }}>
                   Please log in to see the information of your Dashboard
                 </p>
               </div>
