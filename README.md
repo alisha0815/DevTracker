@@ -1,6 +1,6 @@
 
-<h2><p align="center"><strong>DevTracker</strong><br />
-  Securely track and save all of your job opportunities</p></h2>
+<h2><p align="center"><strong>⚡DevTracker</strong><br />
+  Securely track and save all of your job opportunities⏩</p></h2>
 <p align="center"><img src="dev-tracker-app/client/public/img/DevTracker App.gif" alt="dev Trakcer" width="500"></p>
 <p align="center">DevTracker is a Web App for job-seekers to keep track of their job application process </br>
 
